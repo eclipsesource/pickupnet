@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Dummydata
+Bundle-SymbolicName: pickupnet.dummydata
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: dummydata.Activator
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.osgi.framework;version="1.3.0"
+Require-Bundle: pickupnet.model;bundle-version="1.0.0"
