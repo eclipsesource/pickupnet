@@ -10,6 +10,11 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: pickupnet,
  pickupnet.impl,
  pickupnet.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.emf.common.notify,
+ org.eclipse.emf.common.notify.impl,
+ org.eclipse.emf.common.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.impl,
+ org.eclipse.emf.ecore.plugin,
+ org.eclipse.emf.ecore.util

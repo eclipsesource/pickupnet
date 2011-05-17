@@ -2,7 +2,7 @@
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/pickupnet.model/src"
-    modelPluginID="pickupnet.model" modelName="Model" importerID="org.eclipse.emf.importer.ecore"
+    modelPluginID="pickupnet.model" modelName="Model" modelPluginClass="" importerID="org.eclipse.emf.importer.ecore"
     bundleManifest="false" complianceLevel="6.0" copyrightFields="false">
   <foreignModel>Model.ecore</foreignModel>
   <genPackages prefix="Pickupnet" disposableProviderFactory="true" ecorePackage="Model.ecore#/">
@@ -13,11 +13,24 @@
       <genEnumLiterals ecoreEnumLiteral="Model.ecore#//ShipmentStatus/DELIVERED"/>
     </genEnums>
     <genDataTypes ecoreDataType="Model.ecore#//GeoLocation"/>
+    <genClasses ecoreClass="Model.ecore#//Station">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference Model.ecore#//Station/customers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Model.ecore#//Station/drivers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Model.ecore#//Station/shipments"/>
+      <genOperations ecoreOperation="Model.ecore#//Station/registerCustomer">
+        <genParameters ecoreParameter="Model.ecore#//Station/registerCustomer/customer"/>
+      </genOperations>
+      <genOperations ecoreOperation="Model.ecore#//Station/registerDriver">
+        <genParameters ecoreParameter="Model.ecore#//Station/registerDriver/driver"/>
+      </genOperations>
+      <genOperations ecoreOperation="Model.ecore#//Station/acceptShipment">
+        <genParameters ecoreParameter="Model.ecore#//Station/acceptShipment/shipment"/>
+      </genOperations>
+    </genClasses>
     <genClasses ecoreClass="Model.ecore#//Driver">
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute Model.ecore#//Driver/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Model.ecore#//Driver/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Model.ecore#//Driver/assignment"/>
-      <genOperations ecoreOperation="Model.ecore#//Driver/createId"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference Model.ecore#//Driver/assignments"/>
     </genClasses>
     <genClasses ecoreClass="Model.ecore#//Customer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Model.ecore#//Customer/id"/>
@@ -29,7 +42,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Model.ecore#//Shipment/status"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Model.ecore#//Shipment/driver"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Model.ecore#//Shipment/orderer"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Model.ecore#//Shipment/receiver"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Model.ecore#//Shipment/shipToAddress"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Model.ecore#//Shipment/pickUpAddress"/>
     </genClasses>
