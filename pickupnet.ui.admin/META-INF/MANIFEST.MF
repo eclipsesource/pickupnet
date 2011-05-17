@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Pickupnet Admin UI
+Bundle-SymbolicName: pickupnet.ui.admin
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: javax.servlet;version="2.5.0",
+ javax.servlet.http;version="2.5.0",
+ org.eclipse.emf.common.util,
+ org.osgi.service.http;version="1.2.1",
+ pickupnet
+Service-Component: OSGI-INF/httpServiceTrackerComponent.xml

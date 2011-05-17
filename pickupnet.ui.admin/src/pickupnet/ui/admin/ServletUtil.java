@@ -4,7 +4,7 @@
  * Contributors:
  *      Holger Staudacher - initial API and Implementation
  ******************************************************************************/
-package pickupnet.ui.customer;
+package pickupnet.ui.admin;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -31,12 +31,10 @@ public class ServletUtil {
 
   private static void createMenu( StringBuffer buffer ) {
     buffer.append( "<div id=\"menu\">" );
-    buffer.append( "<a href=\"/add/shipment\">Add Shipment</a>" );
-    buffer.append( "<a href=\"/add/driver\">Register as Driver</a>" );
-//    buffer.append( "<a href=\"/add/customer\">Add Customer</a>" );
-//    buffer.append( "<a href=\"/shipments\">List Shipments</a>" );
-//    buffer.append( "<a href=\"/drivers\">List Driver</a>" );
-//    buffer.append( "<a href=\"/customers\">List Customers</a>" );
+    buffer.append( "<a href=\"/admin/add/customer\">Add Customer</a>" );
+    buffer.append( "<a href=\"/admin/shipments\">List Shipments</a>" );
+    buffer.append( "<a href=\"/admin/drivers\">List Driver</a>" );
+    buffer.append( "<a href=\"/admin/customers\">List Customers</a>" );
     buffer.append( "</div>" );
   }
   
