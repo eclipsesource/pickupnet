@@ -62,6 +62,15 @@ public interface PickupnetFactory extends EFactory {
 	Address createAddress();
 
 	/**
+   * Returns a new object of class '<em>Geo Location</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Geo Location</em>'.
+   * @generated
+   */
+  GeoLocation createGeoLocation();
+
+  /**
    * Returns a new object of class '<em>Station</em>'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

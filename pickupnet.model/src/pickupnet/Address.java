@@ -53,26 +53,26 @@ public interface Address extends EObject {
 	void setText(String value);
 
 	/**
-   * Returns the value of the '<em><b>Geo Location</b></em>' attribute.
+   * Returns the value of the '<em><b>Geo Location</b></em>' containment reference.
    * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Geo Location</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Geo Location</em>' attribute.
+   * @return the value of the '<em>Geo Location</em>' containment reference.
    * @see #setGeoLocation(GeoLocation)
    * @see pickupnet.PickupnetPackage#getAddress_GeoLocation()
-   * @model dataType="pickupnet.GeoLocation"
+   * @model containment="true" required="true"
    * @generated
    */
 	GeoLocation getGeoLocation();
 
 	/**
-   * Sets the value of the '{@link pickupnet.Address#getGeoLocation <em>Geo Location</em>}' attribute.
+   * Sets the value of the '{@link pickupnet.Address#getGeoLocation <em>Geo Location</em>}' containment reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Geo Location</em>' attribute.
+   * @param value the new value of the '<em>Geo Location</em>' containment reference.
    * @see #getGeoLocation()
    * @generated
    */

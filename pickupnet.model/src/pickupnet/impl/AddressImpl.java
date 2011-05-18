@@ -7,9 +7,9 @@
 package pickupnet.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -53,24 +53,14 @@ public class AddressImpl extends EObjectImpl implements Address {
 	protected String text = TEXT_EDEFAULT;
 
 	/**
-   * The default value of the '{@link #getGeoLocation() <em>Geo Location</em>}' attribute.
+   * The cached value of the '{@link #getGeoLocation() <em>Geo Location</em>}' containment reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @see #getGeoLocation()
    * @generated
    * @ordered
    */
-	protected static final GeoLocation GEO_LOCATION_EDEFAULT = null;
-
-	/**
-   * The cached value of the '{@link #getGeoLocation() <em>Geo Location</em>}' attribute.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @see #getGeoLocation()
-   * @generated
-   * @ordered
-   */
-	protected GeoLocation geoLocation = GEO_LOCATION_EDEFAULT;
+	protected GeoLocation geoLocation;
 
 	/**
    * <!-- begin-user-doc -->
@@ -123,17 +113,58 @@ public class AddressImpl extends EObjectImpl implements Address {
 
 	/**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetGeoLocation(GeoLocation newGeoLocation, NotificationChain msgs)
+  {
+    GeoLocation oldGeoLocation = geoLocation;
+    geoLocation = newGeoLocation;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PickupnetPackage.ADDRESS__GEO_LOCATION, oldGeoLocation, newGeoLocation);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
 	public void setGeoLocation(GeoLocation newGeoLocation) {
-    GeoLocation oldGeoLocation = geoLocation;
-    geoLocation = newGeoLocation;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PickupnetPackage.ADDRESS__GEO_LOCATION, oldGeoLocation, geoLocation));
+    if (newGeoLocation != geoLocation)
+    {
+      NotificationChain msgs = null;
+      if (geoLocation != null)
+        msgs = ((InternalEObject)geoLocation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PickupnetPackage.ADDRESS__GEO_LOCATION, null, msgs);
+      if (newGeoLocation != null)
+        msgs = ((InternalEObject)newGeoLocation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PickupnetPackage.ADDRESS__GEO_LOCATION, null, msgs);
+      msgs = basicSetGeoLocation(newGeoLocation, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PickupnetPackage.ADDRESS__GEO_LOCATION, newGeoLocation, newGeoLocation));
   }
 
 	/**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case PickupnetPackage.ADDRESS__GEO_LOCATION:
+        return basicSetGeoLocation(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -182,7 +213,7 @@ public class AddressImpl extends EObjectImpl implements Address {
         setText(TEXT_EDEFAULT);
         return;
       case PickupnetPackage.ADDRESS__GEO_LOCATION:
-        setGeoLocation(GEO_LOCATION_EDEFAULT);
+        setGeoLocation((GeoLocation)null);
         return;
     }
     super.eUnset(featureID);
@@ -200,7 +231,7 @@ public class AddressImpl extends EObjectImpl implements Address {
       case PickupnetPackage.ADDRESS__TEXT:
         return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
       case PickupnetPackage.ADDRESS__GEO_LOCATION:
-        return GEO_LOCATION_EDEFAULT == null ? geoLocation != null : !GEO_LOCATION_EDEFAULT.equals(geoLocation);
+        return geoLocation != null;
     }
     return super.eIsSet(featureID);
   }
@@ -217,8 +248,6 @@ public class AddressImpl extends EObjectImpl implements Address {
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (text: ");
     result.append(text);
-    result.append(", geoLocation: ");
-    result.append(geoLocation);
     result.append(')');
     return result.toString();
   }

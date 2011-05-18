@@ -7,11 +7,16 @@
 package pickupnet.impl;
 
 import java.util.Collection;
+import java.util.UUID;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import pickupnet.Customer;
 import pickupnet.Driver;
@@ -36,7 +41,7 @@ import pickupnet.Station;
  */
 public class StationImpl extends EObjectImpl implements Station {
 	/**
-   * The cached value of the '{@link #getCustomers() <em>Customers</em>}' reference list.
+   * The cached value of the '{@link #getCustomers() <em>Customers</em>}' containment reference list.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @see #getCustomers()
@@ -46,7 +51,7 @@ public class StationImpl extends EObjectImpl implements Station {
 	protected EList<Customer> customers;
 
 	/**
-   * The cached value of the '{@link #getDrivers() <em>Drivers</em>}' reference list.
+   * The cached value of the '{@link #getDrivers() <em>Drivers</em>}' containment reference list.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @see #getDrivers()
@@ -64,21 +69,6 @@ public class StationImpl extends EObjectImpl implements Station {
    * @ordered
    */
 	protected EList<Shipment> shipments;
-
-  /**
-   * @generated NOT
-   */
-  private int customerSequence = 0;
-
-  /**
-   * @generated NOT
-   */
-  private int driverSequence = 0;
-
-  /**
-   * @generated NOT
-   */
-  private int shipmentSequence = 0;
 
 	/**
    * <!-- begin-user-doc -->
@@ -107,7 +97,7 @@ public class StationImpl extends EObjectImpl implements Station {
 	public EList<Customer> getCustomers() {
     if (customers == null)
     {
-      customers = new EObjectResolvingEList<Customer>(Customer.class, this, PickupnetPackage.STATION__CUSTOMERS);
+      customers = new EObjectContainmentEList<Customer>(Customer.class, this, PickupnetPackage.STATION__CUSTOMERS);
     }
     return customers;
   }
@@ -120,7 +110,7 @@ public class StationImpl extends EObjectImpl implements Station {
 	public EList<Driver> getDrivers() {
     if (drivers == null)
     {
-      drivers = new EObjectResolvingEList<Driver>(Driver.class, this, PickupnetPackage.STATION__DRIVERS);
+      drivers = new EObjectContainmentEList<Driver>(Driver.class, this, PickupnetPackage.STATION__DRIVERS);
     }
     return drivers;
   }
@@ -148,7 +138,7 @@ public class StationImpl extends EObjectImpl implements Station {
     if( customer == null ) {
       throw new NullPointerException( "customer" );
     }
-    ( ( CustomerImpl )customer ).id = "C" + (++customerSequence);
+    ( ( CustomerImpl )customer ).setId( UUID.randomUUID().toString() );
     getCustomers().add( customer );
   }
 
@@ -162,7 +152,7 @@ public class StationImpl extends EObjectImpl implements Station {
     if( driver == null ) {
       throw new NullPointerException( "driver" );
     }
-    ( ( DriverImpl )driver ).id = "D" + (++driverSequence);
+    ( ( DriverImpl )driver ).setId( UUID.randomUUID().toString() );
     getDrivers().add( driver );
   }
 
@@ -176,8 +166,26 @@ public class StationImpl extends EObjectImpl implements Station {
     if( shipment == null ) {
       throw new NullPointerException( "shipment" );
     }
-    ( ( ShipmentImpl )shipment ).id = "S" + (++shipmentSequence);
+    ( ( ShipmentImpl )shipment ).setId( UUID.randomUUID().toString() );
     getShipments().add( shipment );
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case PickupnetPackage.STATION__CUSTOMERS:
+        return ((InternalEList<?>)getCustomers()).basicRemove(otherEnd, msgs);
+      case PickupnetPackage.STATION__DRIVERS:
+        return ((InternalEList<?>)getDrivers()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**

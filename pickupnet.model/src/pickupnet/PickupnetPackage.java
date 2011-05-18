@@ -8,7 +8,6 @@ package pickupnet;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -112,7 +111,7 @@ public interface PickupnetPackage extends EPackage {
 	int STATION = 0;
 
 	/**
-   * The feature id for the '<em><b>Customers</b></em>' reference list.
+   * The feature id for the '<em><b>Customers</b></em>' containment reference list.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -121,7 +120,7 @@ public interface PickupnetPackage extends EPackage {
 	int STATION__CUSTOMERS = 0;
 
 	/**
-   * The feature id for the '<em><b>Drivers</b></em>' reference list.
+   * The feature id for the '<em><b>Drivers</b></em>' containment reference list.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -202,7 +201,7 @@ public interface PickupnetPackage extends EPackage {
 	int CUSTOMER__NAME = 1;
 
 	/**
-   * The feature id for the '<em><b>Orders</b></em>' reference list.
+   * The feature id for the '<em><b>Orders</b></em>' containment reference list.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -247,7 +246,7 @@ public interface PickupnetPackage extends EPackage {
 	int SHIPMENT__DRIVER = 2;
 
 	/**
-   * The feature id for the '<em><b>Orderer</b></em>' reference.
+   * The feature id for the '<em><b>Orderer</b></em>' container reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -256,7 +255,7 @@ public interface PickupnetPackage extends EPackage {
 	int SHIPMENT__ORDERER = 3;
 
 	/**
-   * The feature id for the '<em><b>Ship To Address</b></em>' reference.
+   * The feature id for the '<em><b>Ship To Address</b></em>' containment reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -265,7 +264,7 @@ public interface PickupnetPackage extends EPackage {
 	int SHIPMENT__SHIP_TO_ADDRESS = 4;
 
 	/**
-   * The feature id for the '<em><b>Pick Up Address</b></em>' reference.
+   * The feature id for the '<em><b>Pick Up Address</b></em>' containment reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -292,7 +291,7 @@ public interface PickupnetPackage extends EPackage {
 	int ADDRESS__TEXT = 0;
 
 	/**
-   * The feature id for the '<em><b>Geo Location</b></em>' attribute.
+   * The feature id for the '<em><b>Geo Location</b></em>' containment reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -317,20 +316,48 @@ public interface PickupnetPackage extends EPackage {
    * @see pickupnet.impl.PickupnetPackageImpl#getShipmentStatus()
    * @generated
    */
-	int SHIPMENT_STATUS = 5;
+	int SHIPMENT_STATUS = 6;
 
 	/**
-   * The meta object id for the '<em>Geo Location</em>' data type.
+   * The meta object id for the '{@link pickupnet.impl.GeoLocationImpl <em>Geo Location</em>}' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see pickupnet.GeoLocation
+   * @see pickupnet.impl.GeoLocationImpl
    * @see pickupnet.impl.PickupnetPackageImpl#getGeoLocation()
    * @generated
    */
-	int GEO_LOCATION = 6;
+	int GEO_LOCATION = 5;
 
 
 	/**
+   * The feature id for the '<em><b>Lat</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GEO_LOCATION__LAT = 0;
+
+  /**
+   * The feature id for the '<em><b>Lon</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GEO_LOCATION__LON = 1;
+
+  /**
+   * The number of structural features of the '<em>Geo Location</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GEO_LOCATION_FEATURE_COUNT = 2;
+
+
+  /**
    * Returns the meta object for class '{@link pickupnet.Driver <em>Driver</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -406,10 +433,10 @@ public interface PickupnetPackage extends EPackage {
 	EAttribute getCustomer_Name();
 
 	/**
-   * Returns the meta object for the reference list '{@link pickupnet.Customer#getOrders <em>Orders</em>}'.
+   * Returns the meta object for the containment reference list '{@link pickupnet.Customer#getOrders <em>Orders</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Orders</em>'.
+   * @return the meta object for the containment reference list '<em>Orders</em>'.
    * @see pickupnet.Customer#getOrders()
    * @see #getCustomer()
    * @generated
@@ -460,10 +487,10 @@ public interface PickupnetPackage extends EPackage {
 	EReference getShipment_Driver();
 
 	/**
-   * Returns the meta object for the reference '{@link pickupnet.Shipment#getOrderer <em>Orderer</em>}'.
+   * Returns the meta object for the container reference '{@link pickupnet.Shipment#getOrderer <em>Orderer</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Orderer</em>'.
+   * @return the meta object for the container reference '<em>Orderer</em>'.
    * @see pickupnet.Shipment#getOrderer()
    * @see #getShipment()
    * @generated
@@ -471,10 +498,10 @@ public interface PickupnetPackage extends EPackage {
 	EReference getShipment_Orderer();
 
 	/**
-   * Returns the meta object for the reference '{@link pickupnet.Shipment#getShipToAddress <em>Ship To Address</em>}'.
+   * Returns the meta object for the containment reference '{@link pickupnet.Shipment#getShipToAddress <em>Ship To Address</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Ship To Address</em>'.
+   * @return the meta object for the containment reference '<em>Ship To Address</em>'.
    * @see pickupnet.Shipment#getShipToAddress()
    * @see #getShipment()
    * @generated
@@ -482,10 +509,10 @@ public interface PickupnetPackage extends EPackage {
 	EReference getShipment_ShipToAddress();
 
 	/**
-   * Returns the meta object for the reference '{@link pickupnet.Shipment#getPickUpAddress <em>Pick Up Address</em>}'.
+   * Returns the meta object for the containment reference '{@link pickupnet.Shipment#getPickUpAddress <em>Pick Up Address</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Pick Up Address</em>'.
+   * @return the meta object for the containment reference '<em>Pick Up Address</em>'.
    * @see pickupnet.Shipment#getPickUpAddress()
    * @see #getShipment()
    * @generated
@@ -514,15 +541,15 @@ public interface PickupnetPackage extends EPackage {
 	EAttribute getAddress_Text();
 
 	/**
-   * Returns the meta object for the attribute '{@link pickupnet.Address#getGeoLocation <em>Geo Location</em>}'.
+   * Returns the meta object for the containment reference '{@link pickupnet.Address#getGeoLocation <em>Geo Location</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Geo Location</em>'.
+   * @return the meta object for the containment reference '<em>Geo Location</em>'.
    * @see pickupnet.Address#getGeoLocation()
    * @see #getAddress()
    * @generated
    */
-	EAttribute getAddress_GeoLocation();
+	EReference getAddress_GeoLocation();
 
 	/**
    * Returns the meta object for class '{@link pickupnet.Station <em>Station</em>}'.
@@ -535,10 +562,10 @@ public interface PickupnetPackage extends EPackage {
 	EClass getStation();
 
 	/**
-   * Returns the meta object for the reference list '{@link pickupnet.Station#getCustomers <em>Customers</em>}'.
+   * Returns the meta object for the containment reference list '{@link pickupnet.Station#getCustomers <em>Customers</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Customers</em>'.
+   * @return the meta object for the containment reference list '<em>Customers</em>'.
    * @see pickupnet.Station#getCustomers()
    * @see #getStation()
    * @generated
@@ -546,10 +573,10 @@ public interface PickupnetPackage extends EPackage {
 	EReference getStation_Customers();
 
 	/**
-   * Returns the meta object for the reference list '{@link pickupnet.Station#getDrivers <em>Drivers</em>}'.
+   * Returns the meta object for the containment reference list '{@link pickupnet.Station#getDrivers <em>Drivers</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Drivers</em>'.
+   * @return the meta object for the containment reference list '<em>Drivers</em>'.
    * @see pickupnet.Station#getDrivers()
    * @see #getStation()
    * @generated
@@ -578,17 +605,38 @@ public interface PickupnetPackage extends EPackage {
 	EEnum getShipmentStatus();
 
 	/**
-   * Returns the meta object for data type '{@link pickupnet.GeoLocation <em>Geo Location</em>}'.
+   * Returns the meta object for class '{@link pickupnet.GeoLocation <em>Geo Location</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>Geo Location</em>'.
+   * @return the meta object for class '<em>Geo Location</em>'.
    * @see pickupnet.GeoLocation
-   * @model instanceClass="pickupnet.GeoLocation"
    * @generated
    */
-	EDataType getGeoLocation();
+	EClass getGeoLocation();
 
 	/**
+   * Returns the meta object for the attribute '{@link pickupnet.GeoLocation#getLat <em>Lat</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Lat</em>'.
+   * @see pickupnet.GeoLocation#getLat()
+   * @see #getGeoLocation()
+   * @generated
+   */
+  EAttribute getGeoLocation_Lat();
+
+  /**
+   * Returns the meta object for the attribute '{@link pickupnet.GeoLocation#getLon <em>Lon</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Lon</em>'.
+   * @see pickupnet.GeoLocation#getLon()
+   * @see #getGeoLocation()
+   * @generated
+   */
+  EAttribute getGeoLocation_Lon();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -671,7 +719,7 @@ public interface PickupnetPackage extends EPackage {
 		EAttribute CUSTOMER__NAME = eINSTANCE.getCustomer_Name();
 
 		/**
-     * The meta object literal for the '<em><b>Orders</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Orders</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
      * @generated
@@ -713,7 +761,7 @@ public interface PickupnetPackage extends EPackage {
 		EReference SHIPMENT__DRIVER = eINSTANCE.getShipment_Driver();
 
 		/**
-     * The meta object literal for the '<em><b>Orderer</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Orderer</b></em>' container reference feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
      * @generated
@@ -721,7 +769,7 @@ public interface PickupnetPackage extends EPackage {
 		EReference SHIPMENT__ORDERER = eINSTANCE.getShipment_Orderer();
 
 		/**
-     * The meta object literal for the '<em><b>Ship To Address</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Ship To Address</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
      * @generated
@@ -729,7 +777,7 @@ public interface PickupnetPackage extends EPackage {
 		EReference SHIPMENT__SHIP_TO_ADDRESS = eINSTANCE.getShipment_ShipToAddress();
 
 		/**
-     * The meta object literal for the '<em><b>Pick Up Address</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Pick Up Address</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
      * @generated
@@ -755,12 +803,12 @@ public interface PickupnetPackage extends EPackage {
 		EAttribute ADDRESS__TEXT = eINSTANCE.getAddress_Text();
 
 		/**
-     * The meta object literal for the '<em><b>Geo Location</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Geo Location</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
      * @generated
      */
-		EAttribute ADDRESS__GEO_LOCATION = eINSTANCE.getAddress_GeoLocation();
+		EReference ADDRESS__GEO_LOCATION = eINSTANCE.getAddress_GeoLocation();
 
 		/**
      * The meta object literal for the '{@link pickupnet.impl.StationImpl <em>Station</em>}' class.
@@ -773,7 +821,7 @@ public interface PickupnetPackage extends EPackage {
 		EClass STATION = eINSTANCE.getStation();
 
 		/**
-     * The meta object literal for the '<em><b>Customers</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Customers</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
      * @generated
@@ -781,7 +829,7 @@ public interface PickupnetPackage extends EPackage {
 		EReference STATION__CUSTOMERS = eINSTANCE.getStation_Customers();
 
 		/**
-     * The meta object literal for the '<em><b>Drivers</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Drivers</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
      * @generated
@@ -807,14 +855,30 @@ public interface PickupnetPackage extends EPackage {
 		EEnum SHIPMENT_STATUS = eINSTANCE.getShipmentStatus();
 
 		/**
-     * The meta object literal for the '<em>Geo Location</em>' data type.
+     * The meta object literal for the '{@link pickupnet.impl.GeoLocationImpl <em>Geo Location</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-     * @see pickupnet.GeoLocation
+     * @see pickupnet.impl.GeoLocationImpl
      * @see pickupnet.impl.PickupnetPackageImpl#getGeoLocation()
      * @generated
      */
-		EDataType GEO_LOCATION = eINSTANCE.getGeoLocation();
+		EClass GEO_LOCATION = eINSTANCE.getGeoLocation();
+
+    /**
+     * The meta object literal for the '<em><b>Lat</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute GEO_LOCATION__LAT = eINSTANCE.getGeoLocation_Lat();
+
+    /**
+     * The meta object literal for the '<em><b>Lon</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute GEO_LOCATION__LON = eINSTANCE.getGeoLocation_Lon();
 
 	}
 

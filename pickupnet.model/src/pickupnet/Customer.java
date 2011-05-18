@@ -7,7 +7,6 @@
 package pickupnet;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -31,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface Customer extends EObject {
 	/**
    * Returns the value of the '<em><b>Id</b></em>' attribute.
+   * The default value is <code>""</code>.
    * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
@@ -38,13 +38,24 @@ public interface Customer extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
    * @return the value of the '<em>Id</em>' attribute.
+   * @see #setId(String)
    * @see pickupnet.PickupnetPackage#getCustomer_Id()
-   * @model id="true" changeable="false"
+   * @model default="" id="true"
    * @generated
    */
 	String getId();
 
 	/**
+   * Sets the value of the '{@link pickupnet.Customer#getId <em>Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Id</em>' attribute.
+   * @see #getId()
+   * @generated
+   */
+  void setId(String value);
+
+  /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
 	 * <p>
@@ -71,7 +82,7 @@ public interface Customer extends EObject {
 	void setName(String value);
 
 	/**
-   * Returns the value of the '<em><b>Orders</b></em>' reference list.
+   * Returns the value of the '<em><b>Orders</b></em>' containment reference list.
    * The list contents are of type {@link pickupnet.Shipment}.
    * It is bidirectional and its opposite is '{@link pickupnet.Shipment#getOrderer <em>Orderer</em>}'.
    * <!-- begin-user-doc -->
@@ -80,10 +91,10 @@ public interface Customer extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Orders</em>' reference list.
+   * @return the value of the '<em>Orders</em>' containment reference list.
    * @see pickupnet.PickupnetPackage#getCustomer_Orders()
    * @see pickupnet.Shipment#getOrderer
-   * @model opposite="orderer" changeable="false"
+   * @model opposite="orderer" containment="true"
    * @generated
    */
 	EList<Shipment> getOrders();

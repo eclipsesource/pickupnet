@@ -72,7 +72,9 @@ public class AddShipmentServlet extends HttpServlet {
     int indexOfSlash = location.indexOf( '/' );
     float lat = new Float( location.substring( 0, indexOfSlash ) );
     float lon = new Float( location.substring( indexOfSlash + 1, location.length() ) );
-    GeoLocation geoLocation = new GeoLocation( lat, lon );
+    GeoLocation geoLocation = PickupnetFactory.eINSTANCE.createGeoLocation();
+    geoLocation.setLat( lat );
+    geoLocation.setLon( lon );
     return geoLocation;
   }
   

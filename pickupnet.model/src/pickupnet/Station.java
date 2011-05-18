@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Station extends EObject {
 	/**
-   * Returns the value of the '<em><b>Customers</b></em>' reference list.
+   * Returns the value of the '<em><b>Customers</b></em>' containment reference list.
    * The list contents are of type {@link pickupnet.Customer}.
    * <!-- begin-user-doc -->
 	 * <p>
@@ -37,15 +37,15 @@ public interface Station extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Customers</em>' reference list.
+   * @return the value of the '<em>Customers</em>' containment reference list.
    * @see pickupnet.PickupnetPackage#getStation_Customers()
-   * @model changeable="false"
+   * @model containment="true" changeable="false"
    * @generated
    */
 	EList<Customer> getCustomers();
 
 	/**
-   * Returns the value of the '<em><b>Drivers</b></em>' reference list.
+   * Returns the value of the '<em><b>Drivers</b></em>' containment reference list.
    * The list contents are of type {@link pickupnet.Driver}.
    * <!-- begin-user-doc -->
 	 * <p>
@@ -53,9 +53,9 @@ public interface Station extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Drivers</em>' reference list.
+   * @return the value of the '<em>Drivers</em>' containment reference list.
    * @see pickupnet.PickupnetPackage#getStation_Drivers()
-   * @model
+   * @model containment="true"
    * @generated
    */
 	EList<Driver> getDrivers();

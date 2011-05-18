@@ -8,12 +8,11 @@ package pickupnet.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import pickupnet.Address;
 import pickupnet.Customer;
@@ -84,25 +83,15 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
 	/**
    * The cached value of the '{@link #getDriver() <em>Driver</em>}' reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getDriver()
    * @generated
    * @ordered
    */
-	protected Driver driver;
+  protected Driver driver;
 
-	/**
-   * The cached value of the '{@link #getOrderer() <em>Orderer</em>}' reference.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @see #getOrderer()
-   * @generated
-   * @ordered
-   */
-	protected Customer orderer;
-
-	/**
-   * The cached value of the '{@link #getShipToAddress() <em>Ship To Address</em>}' reference.
+  /**
+   * The cached value of the '{@link #getShipToAddress() <em>Ship To Address</em>}' containment reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @see #getShipToAddress()
@@ -112,7 +101,7 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
 	protected Address shipToAddress;
 
 	/**
-   * The cached value of the '{@link #getPickUpAddress() <em>Pick Up Address</em>}' reference.
+   * The cached value of the '{@link #getPickUpAddress() <em>Pick Up Address</em>}' containment reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @see #getPickUpAddress()
@@ -150,6 +139,19 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
   }
 
 	/**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setId(String newId)
+  {
+    String oldId = id;
+    id = newId;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PickupnetPackage.SHIPMENT__ID, oldId, id));
+  }
+
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -191,14 +193,15 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
 
 	/**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Driver basicGetDriver() {
+  public Driver basicGetDriver()
+  {
     return driver;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -240,26 +243,8 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
    * @generated
    */
 	public Customer getOrderer() {
-    if (orderer != null && orderer.eIsProxy())
-    {
-      InternalEObject oldOrderer = (InternalEObject)orderer;
-      orderer = (Customer)eResolveProxy(oldOrderer);
-      if (orderer != oldOrderer)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PickupnetPackage.SHIPMENT__ORDERER, oldOrderer, orderer));
-      }
-    }
-    return orderer;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public Customer basicGetOrderer() {
-    return orderer;
+    if (eContainerFeatureID() != PickupnetPackage.SHIPMENT__ORDERER) return null;
+    return (Customer)eContainer();
   }
 
 	/**
@@ -268,13 +253,7 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
    * @generated
    */
 	public NotificationChain basicSetOrderer(Customer newOrderer, NotificationChain msgs) {
-    Customer oldOrderer = orderer;
-    orderer = newOrderer;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PickupnetPackage.SHIPMENT__ORDERER, oldOrderer, newOrderer);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
+    msgs = eBasicSetContainer((InternalEObject)newOrderer, PickupnetPackage.SHIPMENT__ORDERER, msgs);
     return msgs;
   }
 
@@ -284,11 +263,13 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
    * @generated
    */
 	public void setOrderer(Customer newOrderer) {
-    if (newOrderer != orderer)
+    if (newOrderer != eInternalContainer() || (eContainerFeatureID() != PickupnetPackage.SHIPMENT__ORDERER && newOrderer != null))
     {
+      if (EcoreUtil.isAncestor(this, newOrderer))
+        throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
       NotificationChain msgs = null;
-      if (orderer != null)
-        msgs = ((InternalEObject)orderer).eInverseRemove(this, PickupnetPackage.CUSTOMER__ORDERS, Customer.class, msgs);
+      if (eInternalContainer() != null)
+        msgs = eBasicRemoveFromContainer(msgs);
       if (newOrderer != null)
         msgs = ((InternalEObject)newOrderer).eInverseAdd(this, PickupnetPackage.CUSTOMER__ORDERS, Customer.class, msgs);
       msgs = basicSetOrderer(newOrderer, msgs);
@@ -304,38 +285,44 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
    * @generated
    */
 	public Address getShipToAddress() {
-    if (shipToAddress != null && shipToAddress.eIsProxy())
-    {
-      InternalEObject oldShipToAddress = (InternalEObject)shipToAddress;
-      shipToAddress = (Address)eResolveProxy(oldShipToAddress);
-      if (shipToAddress != oldShipToAddress)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PickupnetPackage.SHIPMENT__SHIP_TO_ADDRESS, oldShipToAddress, shipToAddress));
-      }
-    }
     return shipToAddress;
   }
 
 	/**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Address basicGetShipToAddress() {
-    return shipToAddress;
+  public NotificationChain basicSetShipToAddress(Address newShipToAddress, NotificationChain msgs)
+  {
+    Address oldShipToAddress = shipToAddress;
+    shipToAddress = newShipToAddress;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PickupnetPackage.SHIPMENT__SHIP_TO_ADDRESS, oldShipToAddress, newShipToAddress);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
 	public void setShipToAddress(Address newShipToAddress) {
-    Address oldShipToAddress = shipToAddress;
-    shipToAddress = newShipToAddress;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PickupnetPackage.SHIPMENT__SHIP_TO_ADDRESS, oldShipToAddress, shipToAddress));
+    if (newShipToAddress != shipToAddress)
+    {
+      NotificationChain msgs = null;
+      if (shipToAddress != null)
+        msgs = ((InternalEObject)shipToAddress).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PickupnetPackage.SHIPMENT__SHIP_TO_ADDRESS, null, msgs);
+      if (newShipToAddress != null)
+        msgs = ((InternalEObject)newShipToAddress).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PickupnetPackage.SHIPMENT__SHIP_TO_ADDRESS, null, msgs);
+      msgs = basicSetShipToAddress(newShipToAddress, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PickupnetPackage.SHIPMENT__SHIP_TO_ADDRESS, newShipToAddress, newShipToAddress));
   }
 
 	/**
@@ -344,38 +331,44 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
    * @generated
    */
 	public Address getPickUpAddress() {
-    if (pickUpAddress != null && pickUpAddress.eIsProxy())
-    {
-      InternalEObject oldPickUpAddress = (InternalEObject)pickUpAddress;
-      pickUpAddress = (Address)eResolveProxy(oldPickUpAddress);
-      if (pickUpAddress != oldPickUpAddress)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PickupnetPackage.SHIPMENT__PICK_UP_ADDRESS, oldPickUpAddress, pickUpAddress));
-      }
-    }
     return pickUpAddress;
   }
 
 	/**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Address basicGetPickUpAddress() {
-    return pickUpAddress;
+  public NotificationChain basicSetPickUpAddress(Address newPickUpAddress, NotificationChain msgs)
+  {
+    Address oldPickUpAddress = pickUpAddress;
+    pickUpAddress = newPickUpAddress;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PickupnetPackage.SHIPMENT__PICK_UP_ADDRESS, oldPickUpAddress, newPickUpAddress);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
 	public void setPickUpAddress(Address newPickUpAddress) {
-    Address oldPickUpAddress = pickUpAddress;
-    pickUpAddress = newPickUpAddress;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PickupnetPackage.SHIPMENT__PICK_UP_ADDRESS, oldPickUpAddress, pickUpAddress));
+    if (newPickUpAddress != pickUpAddress)
+    {
+      NotificationChain msgs = null;
+      if (pickUpAddress != null)
+        msgs = ((InternalEObject)pickUpAddress).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PickupnetPackage.SHIPMENT__PICK_UP_ADDRESS, null, msgs);
+      if (newPickUpAddress != null)
+        msgs = ((InternalEObject)newPickUpAddress).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PickupnetPackage.SHIPMENT__PICK_UP_ADDRESS, null, msgs);
+      msgs = basicSetPickUpAddress(newPickUpAddress, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PickupnetPackage.SHIPMENT__PICK_UP_ADDRESS, newPickUpAddress, newPickUpAddress));
   }
 
 	/**
@@ -392,8 +385,8 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
           msgs = ((InternalEObject)driver).eInverseRemove(this, PickupnetPackage.DRIVER__ASSIGNMENTS, Driver.class, msgs);
         return basicSetDriver((Driver)otherEnd, msgs);
       case PickupnetPackage.SHIPMENT__ORDERER:
-        if (orderer != null)
-          msgs = ((InternalEObject)orderer).eInverseRemove(this, PickupnetPackage.CUSTOMER__ORDERS, Customer.class, msgs);
+        if (eInternalContainer() != null)
+          msgs = eBasicRemoveFromContainer(msgs);
         return basicSetOrderer((Customer)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -412,11 +405,31 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
         return basicSetDriver(null, msgs);
       case PickupnetPackage.SHIPMENT__ORDERER:
         return basicSetOrderer(null, msgs);
+      case PickupnetPackage.SHIPMENT__SHIP_TO_ADDRESS:
+        return basicSetShipToAddress(null, msgs);
+      case PickupnetPackage.SHIPMENT__PICK_UP_ADDRESS:
+        return basicSetPickUpAddress(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
 	/**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
+  {
+    switch (eContainerFeatureID())
+    {
+      case PickupnetPackage.SHIPMENT__ORDERER:
+        return eInternalContainer().eInverseRemove(this, PickupnetPackage.CUSTOMER__ORDERS, Customer.class, msgs);
+    }
+    return super.eBasicRemoveFromContainerFeature(msgs);
+  }
+
+  /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -433,14 +446,11 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
         if (resolve) return getDriver();
         return basicGetDriver();
       case PickupnetPackage.SHIPMENT__ORDERER:
-        if (resolve) return getOrderer();
-        return basicGetOrderer();
+        return getOrderer();
       case PickupnetPackage.SHIPMENT__SHIP_TO_ADDRESS:
-        if (resolve) return getShipToAddress();
-        return basicGetShipToAddress();
+        return getShipToAddress();
       case PickupnetPackage.SHIPMENT__PICK_UP_ADDRESS:
-        if (resolve) return getPickUpAddress();
-        return basicGetPickUpAddress();
+        return getPickUpAddress();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -454,6 +464,9 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
 	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
+      case PickupnetPackage.SHIPMENT__ID:
+        setId((String)newValue);
+        return;
       case PickupnetPackage.SHIPMENT__STATUS:
         setStatus((ShipmentStatus)newValue);
         return;
@@ -482,6 +495,9 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
 	public void eUnset(int featureID) {
     switch (featureID)
     {
+      case PickupnetPackage.SHIPMENT__ID:
+        setId(ID_EDEFAULT);
+        return;
       case PickupnetPackage.SHIPMENT__STATUS:
         setStatus(STATUS_EDEFAULT);
         return;
@@ -517,7 +533,7 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
       case PickupnetPackage.SHIPMENT__DRIVER:
         return driver != null;
       case PickupnetPackage.SHIPMENT__ORDERER:
-        return orderer != null;
+        return getOrderer() != null;
       case PickupnetPackage.SHIPMENT__SHIP_TO_ADDRESS:
         return shipToAddress != null;
       case PickupnetPackage.SHIPMENT__PICK_UP_ADDRESS:
