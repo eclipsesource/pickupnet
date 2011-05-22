@@ -48,8 +48,9 @@ public class Dummy {
   }
 
   private void createShipments() {
+    Shipment shipment = null;
     for( int i = 0; i < 7; i++ ) {
-      Shipment shipment = PickupnetFactory.eINSTANCE.createShipment();
+      shipment = PickupnetFactory.eINSTANCE.createShipment();
       Customer orderer = station.getCustomers().get( i * 2 % 12 );
       shipment.setOrderer( orderer );
       Address pickupAddress = PickupnetFactory.eINSTANCE.createAddress();
@@ -60,6 +61,8 @@ public class Dummy {
       shipment.setShipToAddress( shiptoAddress );
       station.acceptShipment( shipment );
     }
+    Driver driver = station.getDrivers().get( 0 );
+    shipment.setDriver( driver );
   }
 
   private void listDrivers() {

@@ -8,12 +8,16 @@ package pickupnet.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
-import pickupnet.*;
+import pickupnet.Address;
+import pickupnet.Customer;
+import pickupnet.Driver;
+import pickupnet.GeoLocation;
+import pickupnet.PickupnetPackage;
+import pickupnet.Shipment;
+import pickupnet.Station;
 
 /**
  * <!-- begin-user-doc -->
@@ -101,6 +105,11 @@ public class PickupnetAdapterFactory extends AdapterFactoryImpl {
         return createAddressAdapter();
       }
       @Override
+      public Adapter caseGeoLocation(GeoLocation object)
+      {
+        return createGeoLocationAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -178,6 +187,21 @@ public class PickupnetAdapterFactory extends AdapterFactoryImpl {
   }
 
 	/**
+   * Creates a new adapter for an object of class '{@link pickupnet.GeoLocation <em>Geo Location</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see pickupnet.GeoLocation
+   * @generated
+   */
+  public Adapter createGeoLocationAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link pickupnet.Station <em>Station</em>}'.
    * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;

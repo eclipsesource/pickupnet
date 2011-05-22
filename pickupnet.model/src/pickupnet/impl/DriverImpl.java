@@ -6,6 +6,8 @@
  */
 package pickupnet.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -116,6 +118,19 @@ public class DriverImpl extends EObjectImpl implements Driver {
 
 	/**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setId(String newId)
+  {
+    String oldId = id;
+    id = newId;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PickupnetPackage.DRIVER__ID, oldId, id));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -203,12 +218,20 @@ public class DriverImpl extends EObjectImpl implements Driver {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	@Override
+	@SuppressWarnings("unchecked")
+  @Override
 	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
+      case PickupnetPackage.DRIVER__ID:
+        setId((String)newValue);
+        return;
       case PickupnetPackage.DRIVER__NAME:
         setName((String)newValue);
+        return;
+      case PickupnetPackage.DRIVER__ASSIGNMENTS:
+        getAssignments().clear();
+        getAssignments().addAll((Collection<? extends Shipment>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -223,8 +246,14 @@ public class DriverImpl extends EObjectImpl implements Driver {
 	public void eUnset(int featureID) {
     switch (featureID)
     {
+      case PickupnetPackage.DRIVER__ID:
+        setId(ID_EDEFAULT);
+        return;
       case PickupnetPackage.DRIVER__NAME:
         setName(NAME_EDEFAULT);
+        return;
+      case PickupnetPackage.DRIVER__ASSIGNMENTS:
+        getAssignments().clear();
         return;
     }
     super.eUnset(featureID);

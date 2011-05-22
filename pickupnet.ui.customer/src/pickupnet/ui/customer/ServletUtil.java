@@ -32,11 +32,11 @@ public class ServletUtil {
   private static void createMenu( StringBuffer buffer ) {
     buffer.append( "<div id=\"menu\">" );
     buffer.append( "<a href=\"/add/shipment\">Add Shipment</a>" );
-    buffer.append( "<a href=\"/add/driver\">Add Driver</a>" );
-    buffer.append( "<a href=\"/add/customer\">Add Customer</a>" );
-    buffer.append( "<a href=\"/shipments\">List Shipments</a>" );
-    buffer.append( "<a href=\"/drivers\">List Driver</a>" );
-    buffer.append( "<a href=\"/customers\">List Customers</a>" );
+    buffer.append( "<a href=\"/add/driver\">Register as Driver</a>" );
+//    buffer.append( "<a href=\"/add/customer\">Add Customer</a>" );
+//    buffer.append( "<a href=\"/shipments\">List Shipments</a>" );
+//    buffer.append( "<a href=\"/drivers\">List Driver</a>" );
+//    buffer.append( "<a href=\"/customers\">List Customers</a>" );
     buffer.append( "</div>" );
   }
   

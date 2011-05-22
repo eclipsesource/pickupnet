@@ -34,7 +34,7 @@ public class AddShipmentServlet extends HttpServlet {
     throws ServletException, IOException
   {
     StringBuffer buffer = new StringBuffer();
-    buffer.append( ServletUtil.createHeader( "Pickupnet Shipment added" ) );
+    buffer.append( ServletUtil.createHeader( "Pickupnet Place Shipment" ) );
     InputStream resource = getClass().getResourceAsStream( "/html/addShipment.html" );
     String content = ServletUtil.readFromStream( resource );
     buffer.append( content );
@@ -72,7 +72,9 @@ public class AddShipmentServlet extends HttpServlet {
     int indexOfSlash = location.indexOf( '/' );
     float lat = new Float( location.substring( 0, indexOfSlash ) );
     float lon = new Float( location.substring( indexOfSlash + 1, location.length() ) );
-    GeoLocation geoLocation = new GeoLocation( lat, lon );
+    GeoLocation geoLocation = PickupnetFactory.eINSTANCE.createGeoLocation();
+    geoLocation.setLat( lat );
+    geoLocation.setLon( lon );
     return geoLocation;
   }
   

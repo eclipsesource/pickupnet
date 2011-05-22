@@ -8,10 +8,15 @@ package pickupnet.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
-import pickupnet.*;
+import pickupnet.Address;
+import pickupnet.Customer;
+import pickupnet.Driver;
+import pickupnet.GeoLocation;
+import pickupnet.PickupnetPackage;
+import pickupnet.Shipment;
+import pickupnet.Station;
 
 /**
  * <!-- begin-user-doc -->
@@ -107,6 +112,13 @@ public class PickupnetSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case PickupnetPackage.GEO_LOCATION:
+      {
+        GeoLocation geoLocation = (GeoLocation)theEObject;
+        T result = caseGeoLocation(geoLocation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -172,6 +184,22 @@ public class PickupnetSwitch<T> extends Switch<T> {
   }
 
 	/**
+   * Returns the result of interpreting the object as an instance of '<em>Geo Location</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Geo Location</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseGeoLocation(GeoLocation object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Station</em>'.
    * <!-- begin-user-doc -->
 	 * This implementation returns null;

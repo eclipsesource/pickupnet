@@ -6,6 +6,8 @@
  */
 package pickupnet.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -13,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pickupnet.Customer;
@@ -44,7 +46,7 @@ public class CustomerImpl extends EObjectImpl implements Customer {
    * @generated
    * @ordered
    */
-	protected static final String ID_EDEFAULT = null;
+	protected static final String ID_EDEFAULT = "";
 
 	/**
    * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -77,7 +79,7 @@ public class CustomerImpl extends EObjectImpl implements Customer {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-   * The cached value of the '{@link #getOrders() <em>Orders</em>}' reference list.
+   * The cached value of the '{@link #getOrders() <em>Orders</em>}' containment reference list.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @see #getOrders()
@@ -116,6 +118,19 @@ public class CustomerImpl extends EObjectImpl implements Customer {
 
 	/**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setId(String newId)
+  {
+    String oldId = id;
+    id = newId;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PickupnetPackage.CUSTOMER__ID, oldId, id));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -143,7 +158,7 @@ public class CustomerImpl extends EObjectImpl implements Customer {
 	public EList<Shipment> getOrders() {
     if (orders == null)
     {
-      orders = new EObjectWithInverseResolvingEList<Shipment>(Shipment.class, this, PickupnetPackage.CUSTOMER__ORDERS, PickupnetPackage.SHIPMENT__ORDERER);
+      orders = new EObjectContainmentWithInverseEList<Shipment>(Shipment.class, this, PickupnetPackage.CUSTOMER__ORDERS, PickupnetPackage.SHIPMENT__ORDERER);
     }
     return orders;
   }
@@ -203,12 +218,20 @@ public class CustomerImpl extends EObjectImpl implements Customer {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	@Override
+	@SuppressWarnings("unchecked")
+  @Override
 	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
+      case PickupnetPackage.CUSTOMER__ID:
+        setId((String)newValue);
+        return;
       case PickupnetPackage.CUSTOMER__NAME:
         setName((String)newValue);
+        return;
+      case PickupnetPackage.CUSTOMER__ORDERS:
+        getOrders().clear();
+        getOrders().addAll((Collection<? extends Shipment>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -223,8 +246,14 @@ public class CustomerImpl extends EObjectImpl implements Customer {
 	public void eUnset(int featureID) {
     switch (featureID)
     {
+      case PickupnetPackage.CUSTOMER__ID:
+        setId(ID_EDEFAULT);
+        return;
       case PickupnetPackage.CUSTOMER__NAME:
         setName(NAME_EDEFAULT);
+        return;
+      case PickupnetPackage.CUSTOMER__ORDERS:
+        getOrders().clear();
         return;
     }
     super.eUnset(featureID);

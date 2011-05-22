@@ -4,7 +4,7 @@
  * Contributors:
  *      Holger Staudacher - initial API and Implementation
  ******************************************************************************/
-package pickupnet.ui.customer.servlets;
+package pickupnet.ui.admin.servlets;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import pickupnet.Customer;
 import pickupnet.Pickupnet;
 import pickupnet.PickupnetFactory;
-import pickupnet.ui.customer.ServletUtil;
+import pickupnet.ui.admin.ServletUtil;
 
 
 public class AddCustomerServlet extends HttpServlet {

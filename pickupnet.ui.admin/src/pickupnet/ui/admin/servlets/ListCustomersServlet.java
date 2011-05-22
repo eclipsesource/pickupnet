@@ -4,7 +4,7 @@
  * Contributors:
  *      Holger Staudacher - initial API and Implementation
  ******************************************************************************/
-package pickupnet.ui.customer.servlets;
+package pickupnet.ui.admin.servlets;
 
 import java.io.IOException;
 
@@ -15,27 +15,27 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.emf.common.util.EList;
 
-import pickupnet.Driver;
+import pickupnet.Customer;
 import pickupnet.Pickupnet;
-import pickupnet.ui.customer.ServletUtil;
+import pickupnet.ui.admin.ServletUtil;
 
 
-public class ListDriversServlet extends HttpServlet {
+public class ListCustomersServlet extends HttpServlet {
   
-  private static final long serialVersionUID = 2152621099798970057L;
+  private static final long serialVersionUID = 202905995753085532L;
 
   @Override
   protected void doGet( HttpServletRequest req, HttpServletResponse resp )
     throws ServletException, IOException
   {
     StringBuffer buffer = new StringBuffer();
-    EList<Driver> drivers = Pickupnet.STATION_1.getDrivers();
-    buffer.append( ServletUtil.createHeader( "Pickupnet Drivers" ) );
+    EList<Customer> customers = Pickupnet.STATION_1.getCustomers();
+    buffer.append( ServletUtil.createHeader( "Pickupnet Customers" ) );
     buffer.append( "<ul>" );
-    for( Driver driver : drivers ) {
+    for( Customer customer : customers ) {
       buffer.append( "<li>" );
-      buffer.append( "Id: " + driver.getId() + ", " );
-      buffer.append( "Name: " + driver.getName() );
+      buffer.append( "Id: " + customer.getId() + ", " );
+      buffer.append( "Name: " + customer.getName() );
       buffer.append( "</li>" );
     }
     buffer.append( "</ul>" );

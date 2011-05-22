@@ -39,13 +39,24 @@ public interface Shipment extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
    * @return the value of the '<em>Id</em>' attribute.
+   * @see #setId(String)
    * @see pickupnet.PickupnetPackage#getShipment_Id()
-   * @model id="true" changeable="false"
+   * @model id="true"
    * @generated
    */
 	String getId();
 
 	/**
+   * Sets the value of the '{@link pickupnet.Shipment#getId <em>Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Id</em>' attribute.
+   * @see #getId()
+   * @generated
+   */
+  void setId(String value);
+
+  /**
    * Returns the value of the '<em><b>Status</b></em>' attribute.
    * The literals are from the enumeration {@link pickupnet.ShipmentStatus}.
    * <!-- begin-user-doc -->
@@ -103,7 +114,7 @@ public interface Shipment extends EObject {
 	void setDriver(Driver value);
 
 	/**
-   * Returns the value of the '<em><b>Orderer</b></em>' reference.
+   * Returns the value of the '<em><b>Orderer</b></em>' container reference.
    * It is bidirectional and its opposite is '{@link pickupnet.Customer#getOrders <em>Orders</em>}'.
    * <!-- begin-user-doc -->
 	 * <p>
@@ -111,72 +122,72 @@ public interface Shipment extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Orderer</em>' reference.
+   * @return the value of the '<em>Orderer</em>' container reference.
    * @see #setOrderer(Customer)
    * @see pickupnet.PickupnetPackage#getShipment_Orderer()
    * @see pickupnet.Customer#getOrders
-   * @model opposite="orders" required="true"
+   * @model opposite="orders" required="true" transient="false"
    * @generated
    */
 	Customer getOrderer();
 
 	/**
-   * Sets the value of the '{@link pickupnet.Shipment#getOrderer <em>Orderer</em>}' reference.
+   * Sets the value of the '{@link pickupnet.Shipment#getOrderer <em>Orderer</em>}' container reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Orderer</em>' reference.
+   * @param value the new value of the '<em>Orderer</em>' container reference.
    * @see #getOrderer()
    * @generated
    */
 	void setOrderer(Customer value);
 
 	/**
-   * Returns the value of the '<em><b>Ship To Address</b></em>' reference.
+   * Returns the value of the '<em><b>Ship To Address</b></em>' containment reference.
    * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Ship To Address</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Ship To Address</em>' reference.
+   * @return the value of the '<em>Ship To Address</em>' containment reference.
    * @see #setShipToAddress(Address)
    * @see pickupnet.PickupnetPackage#getShipment_ShipToAddress()
-   * @model required="true"
+   * @model containment="true" required="true"
    * @generated
    */
 	Address getShipToAddress();
 
 	/**
-   * Sets the value of the '{@link pickupnet.Shipment#getShipToAddress <em>Ship To Address</em>}' reference.
+   * Sets the value of the '{@link pickupnet.Shipment#getShipToAddress <em>Ship To Address</em>}' containment reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Ship To Address</em>' reference.
+   * @param value the new value of the '<em>Ship To Address</em>' containment reference.
    * @see #getShipToAddress()
    * @generated
    */
 	void setShipToAddress(Address value);
 
 	/**
-   * Returns the value of the '<em><b>Pick Up Address</b></em>' reference.
+   * Returns the value of the '<em><b>Pick Up Address</b></em>' containment reference.
    * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Pick Up Address</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Pick Up Address</em>' reference.
+   * @return the value of the '<em>Pick Up Address</em>' containment reference.
    * @see #setPickUpAddress(Address)
    * @see pickupnet.PickupnetPackage#getShipment_PickUpAddress()
-   * @model required="true"
+   * @model containment="true" required="true"
    * @generated
    */
 	Address getPickUpAddress();
 
 	/**
-   * Sets the value of the '{@link pickupnet.Shipment#getPickUpAddress <em>Pick Up Address</em>}' reference.
+   * Sets the value of the '{@link pickupnet.Shipment#getPickUpAddress <em>Pick Up Address</em>}' containment reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Pick Up Address</em>' reference.
+   * @param value the new value of the '<em>Pick Up Address</em>' containment reference.
    * @see #getPickUpAddress()
    * @generated
    */

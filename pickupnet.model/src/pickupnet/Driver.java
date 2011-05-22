@@ -7,7 +7,6 @@
 package pickupnet;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -39,13 +38,24 @@ public interface Driver extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
    * @return the value of the '<em>Id</em>' attribute.
+   * @see #setId(String)
    * @see pickupnet.PickupnetPackage#getDriver_Id()
-   * @model default="" id="true" changeable="false"
+   * @model default="" id="true"
    * @generated
    */
 	String getId();
 
 	/**
+   * Sets the value of the '{@link pickupnet.Driver#getId <em>Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Id</em>' attribute.
+   * @see #getId()
+   * @generated
+   */
+  void setId(String value);
+
+  /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
 	 * <p>
@@ -84,7 +94,7 @@ public interface Driver extends EObject {
    * @return the value of the '<em>Assignments</em>' reference list.
    * @see pickupnet.PickupnetPackage#getDriver_Assignments()
    * @see pickupnet.Shipment#getDriver
-   * @model opposite="driver" changeable="false"
+   * @model opposite="driver"
    * @generated
    */
 	EList<Shipment> getAssignments();
