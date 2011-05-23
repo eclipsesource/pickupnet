@@ -38,5 +38,5 @@
 <booleanAttribute key="tracing" value="false"/>
 <booleanAttribute key="useCustomFeatures" value="false"/>
 <booleanAttribute key="useDefaultConfigArea" value="true"/>
-<stringAttribute key="workspace_bundles" value="com.eclipsesource.widgets.gmaps@default:default,pickupnet.model@default:default,pickupnet.ui.admin@default:default,pickupnet.ui.business@default:default,pickupnet.ui.customer@default:default,pickupnet.ui.driver@default:default"/>
+<stringAttribute key="workspace_bundles" value="com.eclipsesource.widgets.gmaps@default:default,pickupnet.dummydata@3:default,pickupnet.model@default:default,pickupnet.ui.admin@default:default,pickupnet.ui.business@default:default,pickupnet.ui.customer@default:default,pickupnet.ui.driver@default:default"/>
 </launchConfiguration>

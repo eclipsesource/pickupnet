@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Model Persistence
+Bundle-SymbolicName: pickupnet.model.persistence
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Activator: pickupnet.model.persistence.Activator
+Bundle-ActivationPolicy: lazy
+Import-Package: org.osgi.framework;version="1.6.0",
+ pickupnet,
+ pickupnet.util
+Require-Bundle: org.eclipse.emf.ecore.xmi;bundle-version="2.7.0",
+ org.eclipse.emf.ecore.edit;bundle-version="2.7.0",
+ org.eclipse.emf.ecore;bundle-version="2.7.0"
