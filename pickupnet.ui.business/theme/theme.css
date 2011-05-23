@@ -1,0 +1,24 @@
+Shell.main {
+  background-image: url( icons/bg.jpg );
+}
+
+Composite.menubar {
+  background-color: transparent;
+}
+
+Label.menubar {
+  background-color: transparent;
+}
+
+Composite.part {
+  background-color: #ffffff;
+  border-radius: 9px;
+}
+
+Label.id {
+  font: 25px bold Helvetica, Arial, sans-serif;
+}
+
+Label.location {
+  font: 20px Helvetica, Arial, sans-serif;
+}

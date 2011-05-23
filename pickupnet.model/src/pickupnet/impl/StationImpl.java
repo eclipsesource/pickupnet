@@ -7,6 +7,8 @@
 package pickupnet.impl;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -17,6 +19,10 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.service.event.Event;
+import org.osgi.service.event.EventAdmin;
+import org.osgi.util.tracker.ServiceTracker;
 
 import pickupnet.Customer;
 import pickupnet.Driver;
@@ -140,6 +146,20 @@ public class StationImpl extends EObjectImpl implements Station {
     }
     ( ( CustomerImpl )customer ).setId( UUID.randomUUID().toString() );
     getCustomers().add( customer );
+    fireCustomerEvent( customer );
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated NOT
+   */
+  private void fireCustomerEvent( Customer customer ) {
+    Map<String, String> properties = new HashMap<String, String>();
+    properties.put( "id", customer.getId() );
+    properties.put( "name", customer.getName() );
+    Event event = new Event( "pickupnet/customer/added", properties );
+    sendEvent( event );
   }
 
   /**
@@ -154,6 +174,20 @@ public class StationImpl extends EObjectImpl implements Station {
     }
     ( ( DriverImpl )driver ).setId( UUID.randomUUID().toString() );
     getDrivers().add( driver );
+    fireDriverEvent( driver );
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated NOT
+   */
+  private void fireDriverEvent( Driver driver ) {
+    Map<String, String> properties = new HashMap<String, String>();
+    properties.put( "id", driver.getId() );
+    properties.put( "name", driver.getName() );
+    Event event = new Event( "pickupnet/driver/added", properties );
+    sendEvent( event );
   }
 
   /**
@@ -168,6 +202,37 @@ public class StationImpl extends EObjectImpl implements Station {
     }
     ( ( ShipmentImpl )shipment ).setId( UUID.randomUUID().toString() );
     getShipments().add( shipment );
+    fireShipmentEvent( shipment );
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated NOT
+   */
+  private void fireShipmentEvent( Shipment shipment ) {
+    Map<String, String> properties = new HashMap<String, String>();
+    properties.put( "pickupAddress", shipment.getPickUpAddress().getText() );
+    properties.put( "shipToAddress", shipment.getShipToAddress().getText() );
+    properties.put( "orderer", shipment.getOrderer().getName() );
+    properties.put( "id", shipment.getId() );
+    Event event = new Event( "pickupnet/shipment/added", properties );
+    sendEvent( event );
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated NOT
+   */
+  private void sendEvent( Event event ) {
+    ServiceTracker<EventAdmin, EventAdmin> tracker = new ServiceTracker<EventAdmin, EventAdmin>( FrameworkUtil.getBundle( getClass() ).getBundleContext(), EventAdmin.class.getName(), null );
+    tracker.open();
+    EventAdmin eventAdmin = tracker.getService();
+    tracker.close();
+    if( eventAdmin != null ) {
+      eventAdmin.sendEvent( event );
+    }
   }
 
   /**

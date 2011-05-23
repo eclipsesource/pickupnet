@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.6"?>
+
+<target name="Pickupnet" sequenceNumber="5">
+<locations>
+<location includeAllPlatforms="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.rap.runtime.sdk.feature.group" version="1.4.0.20110517-0945"/>
+<repository location="http://download.eclipse.org/rt/rap/latest-stable/runtime"/>
+</location>
+<location includeAllPlatforms="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.birt.osgi.runtime.sdk.feature.group" version="3.7.0.v20110329-777D-86sH1BEM7o5ODXarQcBz-fm"/>
+<unit id="org.eclipse.emf.sdk.feature.group" version="2.7.0.v20110516-0928"/>
+<unit id="org.eclipse.emf.rap.sdk.feature.group" version="2.7.0.v20110516-0928"/>
+<unit id="org.eclipse.equinox.sdk.feature.group" version="3.7.0.v20110502-7M7W8Z8eNV4Ulz-bhichboyz0Z5T"/>
+<repository location="http://download.eclipse.org/releases/indigo/"/>
+</location>
+</locations>
+</target>

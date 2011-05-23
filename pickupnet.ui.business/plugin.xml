@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="pickupnet"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            cardinality="singleton-global"
+            thread="main"
+            visible="true">
+         <run
+               class="pickupnet.ui.business.PickupnetApplication">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.rap.ui.themes">
+      <theme
+            file="theme/theme.css"
+            id="pickupnet.ui.business.theme"
+            name="theme">
+      </theme>
+   </extension>
+   <extension
+         point="org.eclipse.rap.ui.branding">
+      <branding
+            defaultEntrypointId="pickupnet.ui.business.pickupnet"
+            id="pickupnet.ui.business.branding"
+            servletName="pickupnet"
+            themeId="pickupnet.ui.business.theme">
+      </branding>
+   </extension>
+   <extension
+         point="org.eclipse.rap.ui.branding">
+      <branding
+            defaultEntrypointId="pickupnet.ui.business.pickupnet"
+            id="pickupnet.ui.business.branding"
+            servletName="pickupnet"
+            themeId="pickupnet.ui.business.theme">
+      </branding>
+   </extension>
+   <extension
+         point="org.eclipse.rap.ui.branding">
+      <branding
+            id="pickupnet.ui.business.branding"
+            servletName="pickupnet">
+      </branding>
+   </extension>
+
+</plugin>
