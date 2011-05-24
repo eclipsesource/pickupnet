@@ -1,10 +1,10 @@
-package pickupnet.model.persistence;
 /*******************************************************************************
  * Copyright (c) EclipseSource (2011). All Rights Reserved.
  * 
  * Contributors:
  *      Holger Staudacher - initial API and Implementation
  ******************************************************************************/
+package pickupnet.model.persistence;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +28,8 @@ import pickupnet.PickupnetPackage;
 import pickupnet.Station;
 import pickupnet.util.ModelLoader;
 import pickupnet.util.PickupnetAdapterFactory;
+
+
 public class ModelPersistenceService implements ModelLoader {
   
   private static final String FILE_PATH = "/tmp/station.xml";
@@ -40,7 +42,7 @@ public class ModelPersistenceService implements ModelLoader {
       AdapterFactoryEditingDomain editingDomain 
         = new AdapterFactoryEditingDomain( new PickupnetAdapterFactory(), new BasicCommandStack() );
       ResourceSet resourceSet = createResourceSet( editingDomain );
-      File file = new File( "/tmp/station.xml" );
+      File file = new File( FILE_PATH );
       EPackage.Registry.INSTANCE.put( MODEL_URI, PickupnetPackage.eINSTANCE );
       boolean needToSave = !file.exists();
       final Resource resource = createResource( resourceSet, needToSave );
