@@ -9,7 +9,6 @@ package pickupnet.impl;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -144,7 +143,8 @@ public class StationImpl extends EObjectImpl implements Station {
     if( customer == null ) {
       throw new NullPointerException( "customer" );
     }
-    ( ( CustomerImpl )customer ).setId( UUID.randomUUID().toString() );
+    String id = Integer.toHexString( ( int )( Math.random() * 0xffffff ) ).toUpperCase();
+    ( ( CustomerImpl )customer ).setId( "C" + id );
     getCustomers().add( customer );
     fireCustomerEvent( customer );
   }
@@ -172,7 +172,8 @@ public class StationImpl extends EObjectImpl implements Station {
     if( driver == null ) {
       throw new NullPointerException( "driver" );
     }
-    ( ( DriverImpl )driver ).setId( UUID.randomUUID().toString() );
+    String id = Integer.toHexString( ( int )( Math.random() * 0xffffff ) ).toUpperCase();
+    ( ( DriverImpl )driver ).setId( "D" + id );
     getDrivers().add( driver );
     fireDriverEvent( driver );
   }
@@ -200,7 +201,8 @@ public class StationImpl extends EObjectImpl implements Station {
     if( shipment == null ) {
       throw new NullPointerException( "shipment" );
     }
-    ( ( ShipmentImpl )shipment ).setId( UUID.randomUUID().toString() );
+    String id = Integer.toHexString( ( int )( Math.random() * 0xffffff ) ).toUpperCase();
+    ( ( ShipmentImpl )shipment ).setId( "S" + id );
     getShipments().add( shipment );
     fireShipmentEvent( shipment );
   }
