@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.emf.common.util.EList;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
 
 import pickupnet.Address;
 import pickupnet.Customer;
@@ -23,6 +26,7 @@ import pickupnet.Pickupnet;
 import pickupnet.PickupnetFactory;
 import pickupnet.Shipment;
 import pickupnet.ui.customer.ServletUtil;
+import pickupnet.util.GeoCoder;
 
 
 public class AddShipmentServlet extends HttpServlet {
@@ -61,23 +65,43 @@ public class AddShipmentServlet extends HttpServlet {
                                String geoParamName ) 
   {
     Address address = PickupnetFactory.eINSTANCE.createAddress();
-    address.setText( req.getParameter( addressParamName ) );
+    String addressText = req.getParameter( addressParamName );
+    address.setText( addressText );
     String location = req.getParameter( geoParamName );
-    GeoLocation geoLocation = extractGeoLocation( location );
+    GeoLocation geoLocation = extractGeoLocation( location, addressText );
     address.setGeoLocation( geoLocation );
     return address;
   }
 
-  private GeoLocation extractGeoLocation( String location ) {
-    int indexOfSlash = location.indexOf( '/' );
-    float lat = new Float( location.substring( 0, indexOfSlash ) );
-    float lon = new Float( location.substring( indexOfSlash + 1, location.length() ) );
-    GeoLocation geoLocation = PickupnetFactory.eINSTANCE.createGeoLocation();
-    geoLocation.setLat( lat );
-    geoLocation.setLon( lon );
+  private GeoLocation extractGeoLocation( String location, String addressText ) {
+    GeoLocation geoLocation = null;
+    if( location != null && !location.equals( "" ) ) {
+      int indexOfSlash = location.indexOf( '/' );
+      float lat = new Float( location.substring( 0, indexOfSlash ) );
+      float lon = new Float( location.substring( indexOfSlash + 1, location.length() ) );
+      geoLocation = PickupnetFactory.eINSTANCE.createGeoLocation();
+      geoLocation.setLat( lat );
+      geoLocation.setLon( lon );
+    } else {
+      geoLocation = callGeoCoder( addressText );
+    }
     return geoLocation;
   }
   
+  private GeoLocation callGeoCoder( String addressText ) {
+    GeoLocation geoLocation = null;
+    BundleContext context = FrameworkUtil.getBundle( getClass() ).getBundleContext();
+    ServiceTracker<GeoCoder, GeoCoder> tracker 
+      = new ServiceTracker<GeoCoder, GeoCoder>( context, GeoCoder.class.getName(), null );
+    tracker.open();
+    GeoCoder geoCoder = tracker.getService();
+    tracker.close();
+    if( geoCoder != null ) {
+      geoLocation = geoCoder.decodeGeoLocation( addressText );
+    }
+    return geoLocation;
+  }
+
   private void createShipment( HttpServletRequest req, Address from, Address to ) {
     Customer customer = extractCustomer( req );
     Shipment shipment = PickupnetFactory.eINSTANCE.createShipment();

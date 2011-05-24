@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Pickupnet Geoservice
+Bundle-SymbolicName: pickupnet.geoservice
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: pickupnet,
+ pickupnet.util
+Service-Component: OSGI-INF/geoCoderComponent.xml
+Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.7.0"

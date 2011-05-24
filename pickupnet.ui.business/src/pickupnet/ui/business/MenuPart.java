@@ -15,6 +15,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -51,13 +52,28 @@ public class MenuPart {
     Customer customer = getCustomer();
     welcome.setText( "Welcome back " + customer.getName() );
     
-    Button button = new Button( menuBar, SWT.PUSH );
-    button.setData( WidgetUtil.CUSTOM_VARIANT, "menu" );
-    button.setLayoutData( new GridData( SWT.RIGHT, SWT.CENTER, false, false ) );
-    button.setText( "Place Shipment" );
-    button.addSelectionListener( new SelectionAdapter() {
+    Composite controlParent = new Composite( menuBar, SWT.NONE );
+    controlParent.setData( WidgetUtil.CUSTOM_VARIANT, "menuControls" );
+    controlParent.setLayoutData( new GridData( SWT.RIGHT, SWT.CENTER, false, false ) );
+    controlParent.setLayout( new RowLayout() );
+    
+    Button addShipmentButton = new Button( controlParent, SWT.PUSH );
+    addShipmentButton.setData( WidgetUtil.CUSTOM_VARIANT, "menu" );
+    addShipmentButton.setText( "Place Shipment" );
+    addShipmentButton.addSelectionListener( new SelectionAdapter() {
       public void widgetSelected( SelectionEvent e ) {
         Dialog dialog = new ShipmentDialog( menuBar.getShell(), userId );
+        dialog.create();
+        dialog.open();
+      };
+    } );
+    
+    Button showReportButton = new Button( controlParent, SWT.PUSH );
+    showReportButton.setData( WidgetUtil.CUSTOM_VARIANT, "menu" );
+    showReportButton.setText( "Show Reports" );
+    showReportButton.addSelectionListener( new SelectionAdapter() {
+      public void widgetSelected( SelectionEvent e ) {
+        Dialog dialog = new ReportDialog( menuBar.getShell(), userId );
         dialog.create();
         dialog.open();
       };

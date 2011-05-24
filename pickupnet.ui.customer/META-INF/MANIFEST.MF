@@ -10,7 +10,10 @@ Import-Package: javax.servlet;version="2.5.0",
  org.eclipse.emf.common.notify,
  org.eclipse.emf.common.util,
  org.eclipse.emf.ecore,
+ org.osgi.framework;version="1.6.0",
  org.osgi.service.http;version="1.2.1",
- pickupnet
+ org.osgi.util.tracker;version="1.5.0",
+ pickupnet,
+ pickupnet.util
 Service-Component: OSGI-INF/httpServiceTrackerComponent.xml
 Bundle-Vendor: %providerName

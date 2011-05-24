@@ -15,6 +15,10 @@ Composite.part {
   border-radius: 9px;
 }
 
+Composite.menuControls {
+  background-color: transparent;
+}
+
 Label.id {
   font: 25px bold Helvetica, Arial, sans-serif;
 }
