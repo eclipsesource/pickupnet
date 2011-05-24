@@ -1,8 +1,10 @@
 package pickupnet.ui.business;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.rwt.RWT;
 import org.eclipse.rwt.lifecycle.UICallBack;
 import org.eclipse.rwt.lifecycle.WidgetUtil;
 import org.eclipse.swt.SWT;
@@ -11,15 +13,18 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
 public class PickupnetApplication implements IApplication {
 
+  private String userId;
+
   @Override
   public Object start( IApplicationContext context ) throws Exception {
+    HttpServletRequest request = RWT.getRequest();
+    userId = request.getParameter( "id" );
+    
     Display display = new Display();
     final Shell shell = new Shell( display, SWT.NO_TRIM );
     shell.setData( WidgetUtil.CUSTOM_VARIANT, "main" );
@@ -28,16 +33,11 @@ public class PickupnetApplication implements IApplication {
     shell.setMaximized( true );
     
     createMenuBar( shell );
-    ContentPart navigationtPart = createNavigation( shell );
-    createContent( shell, navigationtPart );
+    ContentPart contentPart = createParts( shell );
+    createContent( shell, contentPart );
     
     UICallBack.activate( "callback" );
     
-//    String[] topics = new String[] { "pickupnet/shipment/added" };
-//    Hashtable<String, String[]> properties = new Hashtable<String, String[]>();
-//    properties.put(EventConstants.EVENT_TOPIC, topics);
-//    BundleContext bundleContext = FrameworkUtil.getBundle( getClass() ).getBundleContext();
-//    bundleContext.registerService( EventHandler.class.getName(), new ShipmentEventHandler( label ), properties );
     shell.open();
     while( !shell.isDisposed() ) {
       if( !display.readAndDispatch() )
@@ -56,14 +56,14 @@ public class PickupnetApplication implements IApplication {
     contentPart.createControl( content );
   }
 
-  private ContentPart createNavigation( final Shell shell ) {
+  private ContentPart createParts( final Shell shell ) {
     Composite navigation = new Composite( shell, SWT.NONE );
     navigation.setData( WidgetUtil.CUSTOM_VARIANT, "part" );
     GridData gridDataNavigation = new GridData( SWT.FILL, SWT.FILL, true, true );
     navigation.setLayoutData( gridDataNavigation );
     navigation.setLayout( new FillLayout() );
     ContentPart contentPart = new ContentPart();
-    NavigationPart navigationControl = new NavigationPart( contentPart );
+    NavigationPart navigationControl = new NavigationPart( contentPart, userId );
     navigationControl.createControl( navigation );
     return contentPart;
   }
@@ -71,16 +71,8 @@ public class PickupnetApplication implements IApplication {
   private void createMenuBar( final Shell shell ) {
     Composite menuBar = new Composite( shell, SWT.NONE );
     menuBar.setData( WidgetUtil.CUSTOM_VARIANT, "menubar" );
-    menuBar.setLayout( new GridLayout( 6, true ) );
-    GridData gridDataMenuBar = new GridData( SWT.FILL, SWT.FILL, true, false );
-    gridDataMenuBar.horizontalSpan = 4;
-    gridDataMenuBar.heightHint = 50;
-    menuBar.setLayoutData( gridDataMenuBar );
-    
-    Label logo = new Label( menuBar, SWT.NONE );
-    logo.setData( WidgetUtil.CUSTOM_VARIANT, "menubar" );
-    ImageDescriptor descriptor = AbstractUIPlugin.imageDescriptorFromPlugin( "pickupnet.ui.business", "icons/logo.png" );
-    logo.setImage( descriptor.createImage() );
+    MenuPart menuPart = new MenuPart( userId );
+    menuPart.createControl( menuBar );
   }
 
   @Override

@@ -22,3 +22,44 @@ Label.id {
 Label.location {
   font: 20px Helvetica, Arial, sans-serif;
 }
+
+Label.welcome {
+  color: #ffffff;
+  font: 18px Helvetica, Arial, sans-serif;
+  background-image: none;
+  background-color: transparent;
+}
+
+Text.big {
+  font: 20px Helvetica, Arial, sans-serif;
+  border-radius: 4px;
+}
+
+Button.menu {
+  background-color: #ffffff;
+  background-image: none;
+  border-radius: 5px;
+  padding: 5px 5px;
+  font: 16px bold Helvetica, Arial, sans-serif;
+}
+
+Shell.dialog {
+  box-shadow: 5px 5px 3px rgba( 0, 0, 0, 0.5 );
+  background-color: white;
+  border: 2px solid #279199;
+  border-radius: 9px;
+  padding: 5px;
+}
+
+Shell-Titlebar.dialog {
+  background-color: #279199;
+  background-gradient-color: #279199;
+  color: white;
+  background-image: none;
+  padding: 2px 5px 2px;
+  margin: 0px;
+  height: 28px;
+  font: 20px Verdana, "Lucida Sans", Arial, Helvetica, sans-serif;
+  border: none;
+  border-radius: 2px 2px 0px 0px;
+}

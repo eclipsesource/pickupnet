@@ -7,9 +7,8 @@
 package pickupnet.ui.business;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -18,15 +17,21 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.rwt.RWT;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.service.event.Event;
+import org.osgi.service.event.EventConstants;
+import org.osgi.service.event.EventHandler;
 
 import pickupnet.Customer;
 import pickupnet.Pickupnet;
@@ -43,8 +48,6 @@ public class NavigationPart {
 
     @Override
     public void dispose() {
-      // TODO Auto-generated method stub
-      
     }
 
     @Override
@@ -96,7 +99,7 @@ public class NavigationPart {
       }
       return result;
     }
-    
+
   }
   
   private class NavigationlabelProvider extends LabelProvider {
@@ -116,21 +119,85 @@ public class NavigationPart {
       if( element instanceof Shipment ) {
         ImageDescriptor descriptor = AbstractUIPlugin.imageDescriptorFromPlugin( "pickupnet.ui.business", "icons/package.png" );
         result = descriptor.createImage();
+      } else if( element instanceof ShipmentStatus ) {
+        ShipmentStatus status = ( ShipmentStatus )element;
+        String imagePath = getImagePathForStatus( status );
+        ImageDescriptor descriptor = AbstractUIPlugin.imageDescriptorFromPlugin( "pickupnet.ui.business", imagePath );
+        result = descriptor.createImage();
+      }
+      return result;
+    }
+
+    private String getImagePathForStatus( ShipmentStatus status ) {
+      String result = null;
+      if( status.equals( ShipmentStatus.NEW ) ) {
+        result = "icons/new.png";
+      } else if( status.equals( ShipmentStatus.ASSIGNED ) ) {
+        result = "icons/assigned.png";
+      } else if( status.equals( ShipmentStatus.UNDERWAY ) ) {
+        result = "icons/underway.png";
+      } else if( status.equals( ShipmentStatus.DELIVERED ) ) {
+        result = "icons/delivered.png";
       }
       return result;
     }
   }
-
+  
+  private class ShipmentAddedEventHandler implements EventHandler {
+    @Override
+    public void handleEvent( final Event event ) {
+      Display display = viewer.getTree().getDisplay();
+      display.asyncExec( new Runnable() {
+        
+        @Override
+        public void run() {
+          String shipmentId = ( String )event.getProperty( "id" );
+          Shipment shipment = getShipment( shipmentId );
+          viewer.refresh();
+          viewer.expandAll();
+          StructuredSelection selection = new StructuredSelection( shipment );
+          viewer.setSelection( selection, true );
+        }
+      } );
+    }
+  }
+  
+  private class ShipmentChangedEventHandler implements EventHandler {
+    @Override
+    public void handleEvent( final Event event ) {
+      Display display = viewer.getTree().getDisplay();
+      display.asyncExec( new Runnable() {
+        
+        @Override
+        public void run() {
+          viewer.refresh();
+          viewer.expandAll();
+        }
+      } );
+    }
+  }
 
   private ContentPart contentPart;
+  private TreeViewer viewer;
+  private String userId;
 
-  public NavigationPart( ContentPart contentPart ) {
+  public NavigationPart( ContentPart contentPart, String userId ) {
     this.contentPart = contentPart;
+    this.userId = userId;
+    String[] topics = new String[] { "pickupnet/shipment/added" };
+    Hashtable<String, String[]> properties = new Hashtable<String, String[]>();
+    properties.put(EventConstants.EVENT_TOPIC, topics);
+    BundleContext bundleContext = FrameworkUtil.getBundle( getClass() ).getBundleContext();
+    bundleContext.registerService( EventHandler.class.getName(), new ShipmentAddedEventHandler(), properties );
+    topics = new String[] { "pickupnet/shipment/changed" };
+    properties = new Hashtable<String, String[]>();
+    properties.put(EventConstants.EVENT_TOPIC, topics);
+    bundleContext.registerService( EventHandler.class.getName(), new ShipmentChangedEventHandler(), properties );
   }
 
   public void createControl( Composite navigation ) {
     navigation.setLayout( new GridLayout( 1, true ) );
-    TreeViewer viewer = new TreeViewer( navigation, SWT.H_SCROLL | SWT.V_SCROLL );
+    viewer = new TreeViewer( navigation, SWT.H_SCROLL | SWT.V_SCROLL );
     viewer.getTree().setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, true ) );
     viewer.setContentProvider( new NavigationContentProvider() );
     viewer.setLabelProvider( new NavigationlabelProvider() );
@@ -152,12 +219,21 @@ public class NavigationPart {
 
   private Customer getInitalInput() {
     EList<Customer> customers = Pickupnet.STATION_1.getCustomers();
-    HttpServletRequest request = RWT.getRequest();
-    String userId = request.getParameter( "id" );
     Customer result = null;
     for( Customer customer : customers ) {
       if( customer.getId().equals( userId ) ) {
         result = customer;
+      }
+    }
+    return result;
+  }
+
+  private Shipment getShipment( String shipmentId ) {
+    EList<Shipment> shipments = Pickupnet.STATION_1.getShipments();
+    Shipment result = null;
+    for( Shipment shipment : shipments ) {
+      if( shipment.getId().equals( shipmentId ) ) {
+        result = shipment;
       }
     }
     return result;
