@@ -31,6 +31,7 @@ import pickupnet.Shipment;
  * <ul>
  *   <li>{@link pickupnet.impl.CustomerImpl#getId <em>Id</em>}</li>
  *   <li>{@link pickupnet.impl.CustomerImpl#getName <em>Name</em>}</li>
+ *   <li>{@link pickupnet.impl.CustomerImpl#getTwitterUserName <em>Twitter User Name</em>}</li>
  *   <li>{@link pickupnet.impl.CustomerImpl#getOrders <em>Orders</em>}</li>
  * </ul>
  * </p>
@@ -79,6 +80,26 @@ public class CustomerImpl extends EObjectImpl implements Customer {
 	protected String name = NAME_EDEFAULT;
 
 	/**
+   * The default value of the '{@link #getTwitterUserName() <em>Twitter User Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTwitterUserName()
+   * @generated
+   * @ordered
+   */
+  protected static final String TWITTER_USER_NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getTwitterUserName() <em>Twitter User Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTwitterUserName()
+   * @generated
+   * @ordered
+   */
+  protected String twitterUserName = TWITTER_USER_NAME_EDEFAULT;
+
+  /**
    * The cached value of the '{@link #getOrders() <em>Orders</em>}' containment reference list.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -152,6 +173,29 @@ public class CustomerImpl extends EObjectImpl implements Customer {
 
 	/**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getTwitterUserName()
+  {
+    return twitterUserName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTwitterUserName(String newTwitterUserName)
+  {
+    String oldTwitterUserName = twitterUserName;
+    twitterUserName = newTwitterUserName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PickupnetPackage.CUSTOMER__TWITTER_USER_NAME, oldTwitterUserName, twitterUserName));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -207,6 +251,8 @@ public class CustomerImpl extends EObjectImpl implements Customer {
         return getId();
       case PickupnetPackage.CUSTOMER__NAME:
         return getName();
+      case PickupnetPackage.CUSTOMER__TWITTER_USER_NAME:
+        return getTwitterUserName();
       case PickupnetPackage.CUSTOMER__ORDERS:
         return getOrders();
     }
@@ -228,6 +274,9 @@ public class CustomerImpl extends EObjectImpl implements Customer {
         return;
       case PickupnetPackage.CUSTOMER__NAME:
         setName((String)newValue);
+        return;
+      case PickupnetPackage.CUSTOMER__TWITTER_USER_NAME:
+        setTwitterUserName((String)newValue);
         return;
       case PickupnetPackage.CUSTOMER__ORDERS:
         getOrders().clear();
@@ -252,6 +301,9 @@ public class CustomerImpl extends EObjectImpl implements Customer {
       case PickupnetPackage.CUSTOMER__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case PickupnetPackage.CUSTOMER__TWITTER_USER_NAME:
+        setTwitterUserName(TWITTER_USER_NAME_EDEFAULT);
+        return;
       case PickupnetPackage.CUSTOMER__ORDERS:
         getOrders().clear();
         return;
@@ -272,6 +324,8 @@ public class CustomerImpl extends EObjectImpl implements Customer {
         return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
       case PickupnetPackage.CUSTOMER__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case PickupnetPackage.CUSTOMER__TWITTER_USER_NAME:
+        return TWITTER_USER_NAME_EDEFAULT == null ? twitterUserName != null : !TWITTER_USER_NAME_EDEFAULT.equals(twitterUserName);
       case PickupnetPackage.CUSTOMER__ORDERS:
         return orders != null && !orders.isEmpty();
     }
@@ -292,6 +346,8 @@ public class CustomerImpl extends EObjectImpl implements Customer {
     result.append(id);
     result.append(", name: ");
     result.append(name);
+    result.append(", twitterUserName: ");
+    result.append(twitterUserName);
     result.append(')');
     return result.toString();
   }

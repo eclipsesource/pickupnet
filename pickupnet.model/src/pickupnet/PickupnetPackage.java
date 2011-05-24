@@ -201,13 +201,22 @@ public interface PickupnetPackage extends EPackage {
 	int CUSTOMER__NAME = 1;
 
 	/**
+   * The feature id for the '<em><b>Twitter User Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CUSTOMER__TWITTER_USER_NAME = 2;
+
+  /**
    * The feature id for the '<em><b>Orders</b></em>' containment reference list.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int CUSTOMER__ORDERS = 2;
+	int CUSTOMER__ORDERS = 3;
 
 	/**
    * The number of structural features of the '<em>Customer</em>' class.
@@ -216,7 +225,7 @@ public interface PickupnetPackage extends EPackage {
    * @generated
    * @ordered
    */
-	int CUSTOMER_FEATURE_COUNT = 3;
+	int CUSTOMER_FEATURE_COUNT = 4;
 
 	/**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -433,6 +442,17 @@ public interface PickupnetPackage extends EPackage {
 	EAttribute getCustomer_Name();
 
 	/**
+   * Returns the meta object for the attribute '{@link pickupnet.Customer#getTwitterUserName <em>Twitter User Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Twitter User Name</em>'.
+   * @see pickupnet.Customer#getTwitterUserName()
+   * @see #getCustomer()
+   * @generated
+   */
+  EAttribute getCustomer_TwitterUserName();
+
+  /**
    * Returns the meta object for the containment reference list '{@link pickupnet.Customer#getOrders <em>Orders</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -719,6 +739,14 @@ public interface PickupnetPackage extends EPackage {
 		EAttribute CUSTOMER__NAME = eINSTANCE.getCustomer_Name();
 
 		/**
+     * The meta object literal for the '<em><b>Twitter User Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CUSTOMER__TWITTER_USER_NAME = eINSTANCE.getCustomer_TwitterUserName();
+
+    /**
      * The meta object literal for the '<em><b>Orders</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

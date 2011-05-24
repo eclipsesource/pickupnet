@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link pickupnet.Customer#getId <em>Id</em>}</li>
  *   <li>{@link pickupnet.Customer#getName <em>Name</em>}</li>
+ *   <li>{@link pickupnet.Customer#getTwitterUserName <em>Twitter User Name</em>}</li>
  *   <li>{@link pickupnet.Customer#getOrders <em>Orders</em>}</li>
  * </ul>
  * </p>
@@ -82,6 +83,32 @@ public interface Customer extends EObject {
 	void setName(String value);
 
 	/**
+   * Returns the value of the '<em><b>Twitter User Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Twitter User Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Twitter User Name</em>' attribute.
+   * @see #setTwitterUserName(String)
+   * @see pickupnet.PickupnetPackage#getCustomer_TwitterUserName()
+   * @model
+   * @generated
+   */
+  String getTwitterUserName();
+
+  /**
+   * Sets the value of the '{@link pickupnet.Customer#getTwitterUserName <em>Twitter User Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Twitter User Name</em>' attribute.
+   * @see #getTwitterUserName()
+   * @generated
+   */
+  void setTwitterUserName(String value);
+
+  /**
    * Returns the value of the '<em><b>Orders</b></em>' containment reference list.
    * The list contents are of type {@link pickupnet.Shipment}.
    * It is bidirectional and its opposite is '{@link pickupnet.Shipment#getOrderer <em>Orderer</em>}'.

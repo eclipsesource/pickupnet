@@ -44,8 +44,10 @@ public class AddCustomerServlet extends HttpServlet {
     StringBuffer buffer = new StringBuffer();
     buffer.append( ServletUtil.createHeader( "Pickupnet Customer added" ) );
     String name = req.getParameter( "name" );
+    String twitterUserName = req.getParameter( "twitterUserName" );
     Customer customer = PickupnetFactory.eINSTANCE.createCustomer();
     customer.setName( name );
+    customer.setTwitterUserName( twitterUserName );
     Pickupnet.STATION_1.registerCustomer( customer );
     buffer.append( "Customer added with Id " + customer.getId() );
     buffer.append( ServletUtil.createFooter() );

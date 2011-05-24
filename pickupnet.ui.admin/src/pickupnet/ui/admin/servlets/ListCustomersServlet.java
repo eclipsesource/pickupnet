@@ -35,7 +35,8 @@ public class ListCustomersServlet extends HttpServlet {
     for( Customer customer : customers ) {
       buffer.append( "<li>" );
       buffer.append( "Id: " + customer.getId() + ", " );
-      buffer.append( "Name: " + customer.getName() );
+      buffer.append( "Name: " + customer.getName() + ", " );
+      buffer.append( "Twitter Username: " + customer.getTwitterUserName() );
       buffer.append( "</li>" );
     }
     buffer.append( "</ul>" );

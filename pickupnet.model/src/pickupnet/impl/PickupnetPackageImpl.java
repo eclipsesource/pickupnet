@@ -206,11 +206,21 @@ public class PickupnetPackageImpl extends EPackageImpl implements PickupnetPacka
 
 	/**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCustomer_TwitterUserName()
+  {
+    return (EAttribute)customerEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
 	public EReference getCustomer_Orders() {
-    return (EReference)customerEClass.getEStructuralFeatures().get(2);
+    return (EReference)customerEClass.getEStructuralFeatures().get(3);
   }
 
 	/**
@@ -418,6 +428,7 @@ public class PickupnetPackageImpl extends EPackageImpl implements PickupnetPacka
     customerEClass = createEClass(CUSTOMER);
     createEAttribute(customerEClass, CUSTOMER__ID);
     createEAttribute(customerEClass, CUSTOMER__NAME);
+    createEAttribute(customerEClass, CUSTOMER__TWITTER_USER_NAME);
     createEReference(customerEClass, CUSTOMER__ORDERS);
 
     shipmentEClass = createEClass(SHIPMENT);
@@ -492,6 +503,7 @@ public class PickupnetPackageImpl extends EPackageImpl implements PickupnetPacka
     initEClass(customerEClass, Customer.class, "Customer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCustomer_Id(), ecorePackage.getEString(), "id", "", 0, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getCustomer_Name(), ecorePackage.getEString(), "name", null, 0, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCustomer_TwitterUserName(), ecorePackage.getEString(), "twitterUserName", null, 0, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCustomer_Orders(), this.getShipment(), this.getShipment_Orderer(), "orders", null, 0, -1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(shipmentEClass, Shipment.class, "Shipment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
