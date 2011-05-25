@@ -12,10 +12,9 @@ import pickupnet.util.ModelLoader;
  */
 public class Pickupnet {
 
+  public static final Station STATION_1 = loadStation();
 
-  public static final Station STATION_1 = loadStationFromFile();
-
-  private static Station loadStationFromFile() {
+  private static Station loadStation() {
     BundleContext context = FrameworkUtil.getBundle( Pickupnet.class ).getBundleContext();
     ServiceTracker<ModelLoader, ModelLoader> tracker = new ServiceTracker<ModelLoader, ModelLoader>( context, ModelLoader.class.getName(), null );
     tracker.open();
