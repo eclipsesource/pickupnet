@@ -28,6 +28,7 @@ import pickupnet.Driver;
 import pickupnet.PickupnetPackage;
 import pickupnet.Shipment;
 import pickupnet.Station;
+import pickupnet.util.EventUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -146,7 +147,7 @@ public class StationImpl extends EObjectImpl implements Station {
     String id = Integer.toHexString( ( int )( Math.random() * 0xffffff ) ).toUpperCase();
     ( ( CustomerImpl )customer ).setId( "C" + id );
     getCustomers().add( customer );
-    fireCustomerEvent( customer );
+    EventUtil.fireCustomerEvent( customer, "added" );
   }
 
   /**
@@ -154,28 +155,14 @@ public class StationImpl extends EObjectImpl implements Station {
    * <!-- end-user-doc -->
    * @generated NOT
    */
-  private void fireCustomerEvent( Customer customer ) {
-    Map<String, String> properties = new HashMap<String, String>();
-    properties.put( "id", customer.getId() );
-    properties.put( "name", customer.getName() );
-    Event event = new Event( "pickupnet/customer/added", properties );
-    sendEvent( event );
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated NOT
-   */
-  public void registerDriver(Driver driver)
-  {
+  public void registerDriver( Driver driver ) {
     if( driver == null ) {
       throw new NullPointerException( "driver" );
     }
     String id = Integer.toHexString( ( int )( Math.random() * 0xffffff ) ).toUpperCase();
     ( ( DriverImpl )driver ).setId( "D" + id );
     getDrivers().add( driver );
-    fireDriverEvent( driver );
+    EventUtil.fireDriverEvent( driver, "added" );
   }
 
   /**
@@ -183,58 +170,14 @@ public class StationImpl extends EObjectImpl implements Station {
    * <!-- end-user-doc -->
    * @generated NOT
    */
-  private void fireDriverEvent( Driver driver ) {
-    Map<String, String> properties = new HashMap<String, String>();
-    properties.put( "id", driver.getId() );
-    properties.put( "name", driver.getName() );
-    Event event = new Event( "pickupnet/driver/added", properties );
-    sendEvent( event );
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated NOT
-   */
-  public void acceptShipment(Shipment shipment)
-  {
+  public void acceptShipment( Shipment shipment ) {
     if( shipment == null ) {
       throw new NullPointerException( "shipment" );
     }
     String id = Integer.toHexString( ( int )( Math.random() * 0xffffff ) ).toUpperCase();
     ( ( ShipmentImpl )shipment ).setId( "S" + id );
     getShipments().add( shipment );
-    fireShipmentEvent( shipment );
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated NOT
-   */
-  private void fireShipmentEvent( Shipment shipment ) {
-    Map<String, String> properties = new HashMap<String, String>();
-    properties.put( "pickupAddress", shipment.getPickUpAddress().getText() );
-    properties.put( "shipToAddress", shipment.getShipToAddress().getText() );
-    properties.put( "orderer", shipment.getOrderer().getName() );
-    properties.put( "id", shipment.getId() );
-    Event event = new Event( "pickupnet/shipment/added", properties );
-    sendEvent( event );
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated NOT
-   */
-  private void sendEvent( Event event ) {
-    ServiceTracker<EventAdmin, EventAdmin> tracker = new ServiceTracker<EventAdmin, EventAdmin>( FrameworkUtil.getBundle( getClass() ).getBundleContext(), EventAdmin.class.getName(), null );
-    tracker.open();
-    EventAdmin eventAdmin = tracker.getService();
-    tracker.close();
-    if( eventAdmin != null ) {
-      eventAdmin.sendEvent( event );
-    }
+    EventUtil.fireShipmentEvent( shipment, "added" );
   }
 
   /**

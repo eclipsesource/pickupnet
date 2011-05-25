@@ -24,6 +24,7 @@ import pickupnet.Driver;
 import pickupnet.PickupnetPackage;
 import pickupnet.Shipment;
 import pickupnet.ShipmentStatus;
+import pickupnet.util.EventUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Shipment</b></em>'. <!--
@@ -166,33 +167,7 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
                                       PickupnetPackage.SHIPMENT__STATUS,
                                       oldStatus,
                                       status ) );
-    fireShipmentChangedEvent();
-  }
-  
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated NOT
-   */
-  private void fireShipmentChangedEvent() {
-    Shipment shipment = this;
-    Map<String, String> properties = new HashMap<String, String>();
-    Address pickUpAddress = shipment.getPickUpAddress();
-    if( pickUpAddress != null ) {
-      properties.put( "pickupAddress", pickUpAddress.getText() );
-    }
-    Address shipToAddress = shipment.getShipToAddress();
-    if( shipToAddress != null ) {
-      properties.put( "shipToAddress", shipToAddress.getText() );
-    }
-    Customer orderer = shipment.getOrderer();
-    if( orderer != null ) {
-      properties.put( "orderer", orderer.getName() );
-    }
-    properties.put( "id", shipment.getId() );
-    properties.put( "status", shipment.getStatus().toString() );
-    Event event = new Event( "pickupnet/shipment/changed", properties );
-    sendEvent( event );
+    EventUtil.fireShipmentEvent( this, "changed" );
   }
 
   /**
@@ -566,19 +541,4 @@ public class ShipmentImpl extends EObjectImpl implements Shipment {
     return result.toString();
   }
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  private void sendEvent( Event event ) {
-    ServiceTracker<EventAdmin, EventAdmin> tracker 
-      = new ServiceTracker<EventAdmin, EventAdmin>( FrameworkUtil.getBundle( getClass() ).getBundleContext(), EventAdmin.class.getName(), null );
-    tracker.open();
-    EventAdmin eventAdmin = tracker.getService();
-    tracker.close();
-    if( eventAdmin != null ) {
-      eventAdmin.sendEvent( event );
-    }
-  }
 } // ShipmentImpl
