@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Rap Business UI
+Bundle-SymbolicName: pickupnet.ui.business.rap
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: pickupnet.ui.business.rap.Activator
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.osgi.framework;version="1.3.0",
+ pickupnet.ui.business.singlesourcing
+Require-Bundle: org.eclipse.rap.ui;bundle-version="1.4.0"

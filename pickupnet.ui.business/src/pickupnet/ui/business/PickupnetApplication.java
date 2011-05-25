@@ -1,12 +1,8 @@
 package pickupnet.ui.business;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.rwt.RWT;
-import org.eclipse.rwt.lifecycle.UICallBack;
-import org.eclipse.rwt.lifecycle.WidgetUtil;
+import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -14,29 +10,36 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.osgi.framework.BundleContext;
+import org.osgi.util.tracker.ServiceTracker;
+
+import pickupnet.ui.business.singlesourcing.SingleSourcingService;
 
 
 public class PickupnetApplication implements IApplication {
 
   private String userId;
+  private SingleSourcingService service;
 
   @Override
   public Object start( IApplicationContext context ) throws Exception {
-    HttpServletRequest request = RWT.getRequest();
-    userId = request.getParameter( "id" );
-    
     Display display = new Display();
-    final Shell shell = new Shell( display, SWT.NO_TRIM );
-    shell.setData( WidgetUtil.CUSTOM_VARIANT, "main" );
+    final Shell shell = new Shell( display, getSingleSourceingService().getShellStyle() );
+    shell.setData( "org.eclipse.rwt.themeVariant", "main" );
     GridLayout layout = new GridLayout( 4, true );
     shell.setLayout( layout );
     shell.setMaximized( true );
+    
+    InputDialog userDialog = new InputDialog( shell, "Enter Customer Id", "Id:", "", null );
+    userDialog.setBlockOnOpen( true );
+    userDialog.open();
+    userId = userDialog.getValue();
     
     createMenuBar( shell );
     ContentPart contentPart = createParts( shell );
     createContent( shell, contentPart );
     
-    UICallBack.activate( "callback" );
+    getSingleSourceingService().startUiCallBack();
     
     shell.open();
     while( !shell.isDisposed() ) {
@@ -49,7 +52,7 @@ public class PickupnetApplication implements IApplication {
 
   private void createContent( final Shell shell, ContentPart contentPart ) {
     Composite content = new Composite( shell, SWT.NONE );
-    content.setData( WidgetUtil.CUSTOM_VARIANT, "part" );
+    content.setData( "org.eclipse.rwt.themeVariant", "part" );
     GridData gridDataContent = new GridData( SWT.FILL, SWT.FILL, true, true );
     gridDataContent.horizontalSpan = 3;
     content.setLayoutData( gridDataContent );
@@ -58,7 +61,7 @@ public class PickupnetApplication implements IApplication {
 
   private ContentPart createParts( final Shell shell ) {
     Composite navigation = new Composite( shell, SWT.NONE );
-    navigation.setData( WidgetUtil.CUSTOM_VARIANT, "part" );
+    navigation.setData( "org.eclipse.rwt.themeVariant", "part" );
     GridData gridDataNavigation = new GridData( SWT.FILL, SWT.FILL, true, true );
     navigation.setLayoutData( gridDataNavigation );
     navigation.setLayout( new FillLayout() );
@@ -70,13 +73,25 @@ public class PickupnetApplication implements IApplication {
 
   private void createMenuBar( final Shell shell ) {
     Composite menuBar = new Composite( shell, SWT.NONE );
-    menuBar.setData( WidgetUtil.CUSTOM_VARIANT, "menubar" );
+    menuBar.setData( "org.eclipse.rwt.themeVariant", "menubar" );
     MenuPart menuPart = new MenuPart( userId );
     menuPart.createControl( menuBar );
   }
 
   @Override
   public void stop() {
-    UICallBack.deactivate( "callback" );
+    getSingleSourceingService().stopUiCallback();
+  }
+  
+  private SingleSourcingService getSingleSourceingService() {
+    if( service == null ) {
+      BundleContext context = Activator.context;
+      ServiceTracker<SingleSourcingService, SingleSourcingService> tracker 
+        = new ServiceTracker<SingleSourcingService, SingleSourcingService>( context, SingleSourcingService.class.getName(), null );
+      tracker.open();
+      service = tracker.getService();
+      tracker.close();
+    }
+    return service;
   }
 }

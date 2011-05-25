@@ -9,7 +9,6 @@ package pickupnet.ui.business;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.rwt.lifecycle.WidgetUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -43,37 +42,26 @@ public class MenuPart {
     menuBar.setLayoutData( gridDataMenuBar );
     
     Label logo = new Label( menuBar, SWT.NONE );
-    logo.setData( WidgetUtil.CUSTOM_VARIANT, "menubar" );
+    logo.setData( "org.eclipse.rwt.themeVariant", "menubar" );
     ImageDescriptor descriptor = AbstractUIPlugin.imageDescriptorFromPlugin( "pickupnet.ui.business", "icons/logo.png" );
     logo.setImage( descriptor.createImage() );
     
     Label welcome = new Label( menuBar, SWT.NONE );
-    welcome.setData( WidgetUtil.CUSTOM_VARIANT, "welcome" );
+    welcome.setData( "org.eclipse.rwt.themeVariant", "welcome" );
     Customer customer = getCustomer();
     welcome.setText( "Welcome back " + customer.getName() );
     
     Composite controlParent = new Composite( menuBar, SWT.NONE );
-    controlParent.setData( WidgetUtil.CUSTOM_VARIANT, "menuControls" );
+    controlParent.setData( "org.eclipse.rwt.themeVariant", "menuControls" );
     controlParent.setLayoutData( new GridData( SWT.RIGHT, SWT.CENTER, false, false ) );
     controlParent.setLayout( new RowLayout() );
     
     Button addShipmentButton = new Button( controlParent, SWT.PUSH );
-    addShipmentButton.setData( WidgetUtil.CUSTOM_VARIANT, "menu" );
+    addShipmentButton.setData( "org.eclipse.rwt.themeVariant", "menu" );
     addShipmentButton.setText( "Place Shipment" );
     addShipmentButton.addSelectionListener( new SelectionAdapter() {
       public void widgetSelected( SelectionEvent e ) {
         Dialog dialog = new ShipmentDialog( menuBar.getShell(), userId );
-        dialog.create();
-        dialog.open();
-      };
-    } );
-    
-    Button showReportButton = new Button( controlParent, SWT.PUSH );
-    showReportButton.setData( WidgetUtil.CUSTOM_VARIANT, "menu" );
-    showReportButton.setText( "Show Reports" );
-    showReportButton.addSelectionListener( new SelectionAdapter() {
-      public void widgetSelected( SelectionEvent e ) {
-        Dialog dialog = new ReportDialog( menuBar.getShell(), userId );
         dialog.create();
         dialog.open();
       };

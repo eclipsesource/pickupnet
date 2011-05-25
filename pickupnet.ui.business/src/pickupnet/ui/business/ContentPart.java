@@ -6,7 +6,6 @@
  ******************************************************************************/
 package pickupnet.ui.business;
 
-import org.eclipse.rwt.lifecycle.WidgetUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
@@ -45,7 +44,7 @@ public class ContentPart {
 
   private Label createIdControls( Composite content ) {
     Label title = new Label( content, SWT.NONE );
-    title.setData( WidgetUtil.CUSTOM_VARIANT, ID_VARIANT );
+    title.setData( "org.eclipse.rwt.themeVariant", ID_VARIANT );
     title.setText( "Id:" );
     FormData formDataTitle = new FormData();
     title.setLayoutData( formDataTitle );
@@ -53,7 +52,7 @@ public class ContentPart {
     formDataTitle.left = new FormAttachment( 0, 5 );
     
     idLabel = new Label( content, SWT.NONE );
-    idLabel.setData( WidgetUtil.CUSTOM_VARIANT, ID_VARIANT );
+    idLabel.setData( "org.eclipse.rwt.themeVariant", ID_VARIANT );
     FormData formDataIdLabel = new FormData();
     idLabel.setLayoutData( formDataIdLabel );
     formDataIdLabel.left = new FormAttachment( title, 5 );
@@ -64,7 +63,7 @@ public class ContentPart {
 
   private Label createFromControls( Composite content, Label title ) {
     Label from = new Label( content, SWT.NONE );
-    from.setData( WidgetUtil.CUSTOM_VARIANT, LOCATION_VARIANT );
+    from.setData( "org.eclipse.rwt.themeVariant", LOCATION_VARIANT );
     FormData fromFormData = new FormData();
     from.setLayoutData( fromFormData );
     fromFormData.top = new FormAttachment( title, 10 );
@@ -72,7 +71,7 @@ public class ContentPart {
     from.setText( "From:" );
     
     fromAddress = new Label( content, SWT.NONE );
-    fromAddress.setData( WidgetUtil.CUSTOM_VARIANT, LOCATION_VARIANT );
+    fromAddress.setData( "org.eclipse.rwt.themeVariant", LOCATION_VARIANT );
     FormData fromAddressFormData = new FormData();
     fromAddress.setLayoutData( fromAddressFormData );
     fromAddressFormData.top = new FormAttachment( title, 10 );
@@ -80,7 +79,7 @@ public class ContentPart {
     fromAddress.setText( "" );
     
     fromCoordinates = new Label( content, SWT.NONE );
-    fromCoordinates.setData( WidgetUtil.CUSTOM_VARIANT, LOCATION_VARIANT );
+    fromCoordinates.setData( "org.eclipse.rwt.themeVariant", LOCATION_VARIANT );
     FormData fromCoordinatesFormData = new FormData();
     fromCoordinates.setLayoutData( fromCoordinatesFormData );
     fromCoordinatesFormData.top = fromAddressFormData.top;
@@ -91,7 +90,7 @@ public class ContentPart {
 
   private Label createToControls( Composite content, Label from ) {
     Label to = new Label( content, SWT.NONE );
-    to.setData( WidgetUtil.CUSTOM_VARIANT, LOCATION_VARIANT );
+    to.setData( "org.eclipse.rwt.themeVariant", LOCATION_VARIANT );
     FormData toFormData = new FormData();
     to.setLayoutData( toFormData );
     toFormData.top = new FormAttachment( from, 5 );
@@ -99,7 +98,7 @@ public class ContentPart {
     to.setText( "To:" );
     
     toAddress = new Label( content, SWT.NONE );
-    toAddress.setData( WidgetUtil.CUSTOM_VARIANT, LOCATION_VARIANT );
+    toAddress.setData( "org.eclipse.rwt.themeVariant", LOCATION_VARIANT );
     FormData toAddressFormData = new FormData();
     toAddress.setLayoutData( toAddressFormData );
     toAddressFormData.top = new FormAttachment( from, 5 );
@@ -107,7 +106,7 @@ public class ContentPart {
     toAddress.setText( "" );
     
     toCoordinates = new Label( content, SWT.NONE );
-    toCoordinates.setData( WidgetUtil.CUSTOM_VARIANT, LOCATION_VARIANT );
+    toCoordinates.setData( "org.eclipse.rwt.themeVariant", LOCATION_VARIANT );
     FormData toCoordinatesFormData = new FormData();
     toCoordinates.setLayoutData( toCoordinatesFormData );
     toCoordinatesFormData.top = toAddressFormData.top;
@@ -124,7 +123,7 @@ public class ContentPart {
     formDataMap.right = new FormAttachment( 100, -5 );
     formDataMap.top = new FormAttachment( to, 10 );
     formDataMap.bottom = new FormAttachment( 100, -5 );
-    map.setZoom( 15 );
+    map.setZoom( 0 );
     map.setType( 2 );
   }
   
@@ -138,6 +137,7 @@ public class ContentPart {
     toAddress.setText( shipToAddress.getText() );
     GeoLocation toGeoLocation = shipToAddress.getGeoLocation();
     toCoordinates.setText( "(" + toGeoLocation.getLat() + "/" + toGeoLocation.getLon() + ")" );
+    map.setZoom( 15 );
     map.setCenter( new LatLng( fromGeoLocation.getLat(), fromGeoLocation.getLon() ) );
     map.addMarker( "From: " + fromAddress.getText() );
     map.gotoAddress( shipToAddress.getText() );

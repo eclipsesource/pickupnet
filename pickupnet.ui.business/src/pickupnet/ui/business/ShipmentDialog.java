@@ -8,7 +8,6 @@ package pickupnet.ui.business;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.rwt.lifecycle.WidgetUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -50,66 +49,66 @@ public class ShipmentDialog extends Dialog {
   @Override
   protected Control createContents( Composite parent ) {
     parent.getShell().setText( "Place Shipment" );
-    parent.getShell().setData( WidgetUtil.CUSTOM_VARIANT, "dialog" );
+    parent.getShell().setData( "org.eclipse.rwt.themeVariant", "dialog" );
     parent.setLayout( new FillLayout() );
     Composite contentArea = new Composite( parent, SWT.NONE );
     contentArea.setLayout( new GridLayout( 4, true ) );
     
     Label from = new Label( contentArea, SWT.NONE );
-    from.setData( WidgetUtil.CUSTOM_VARIANT, "id" );
+    from.setData( "org.eclipse.rwt.themeVariant", "id" );
     GridData fromLabelLayoutData = new GridData( SWT.FILL, SWT.FILL, true, false );
     fromLabelLayoutData.horizontalSpan = 4;
     from.setLayoutData( fromLabelLayoutData );
     from.setText( "From:" );
     
     Label fromAddressLabel = new Label( contentArea, SWT.NONE );
-    fromAddressLabel.setData( WidgetUtil.CUSTOM_VARIANT, "location" );
+    fromAddressLabel.setData( "org.eclipse.rwt.themeVariant", "location" );
     fromAddressLabel.setLayoutData( new GridData( SWT.BEGINNING, SWT.CENTER, false, false ) );
     fromAddressLabel.setText( "Address" );
     
     fromAddress = new Text( contentArea, SWT.SINGLE | SWT.LEAD | SWT.BORDER );
-    fromAddress.setData( WidgetUtil.CUSTOM_VARIANT, "big" );
+    fromAddress.setData( "org.eclipse.rwt.themeVariant", "big" );
     GridData fromAddressLayoutData = new GridData( SWT.FILL, SWT.CENTER, true, false );
     fromAddressLayoutData.horizontalSpan = 3;
     fromAddressLayoutData.widthHint = 300;
     fromAddress.setLayoutData( fromAddressLayoutData );
     
     Label fromGeoLabel = new Label( contentArea, SWT.NONE );
-    fromGeoLabel.setData( WidgetUtil.CUSTOM_VARIANT, "location" );
+    fromGeoLabel.setData( "org.eclipse.rwt.themeVariant", "location" );
     fromGeoLabel.setLayoutData( new GridData( SWT.BEGINNING, SWT.CENTER, false, false ) );
     fromGeoLabel.setText( "Lat/Lon" );
     
     fromGeo = new Text( contentArea, SWT.SINGLE | SWT.LEAD | SWT.BORDER );
-    fromGeo.setData( WidgetUtil.CUSTOM_VARIANT, "big" );
+    fromGeo.setData( "org.eclipse.rwt.themeVariant", "big" );
     fromGeo.setLayoutData( fromAddressLayoutData );
     
     Label to = new Label( contentArea, SWT.NONE );
-    to.setData( WidgetUtil.CUSTOM_VARIANT, "id" );
+    to.setData( "org.eclipse.rwt.themeVariant", "id" );
     to.setLayoutData( fromLabelLayoutData );
     to.setText( "To:" );
     
     Label toAddressLabel = new Label( contentArea, SWT.NONE );
-    toAddressLabel.setData( WidgetUtil.CUSTOM_VARIANT, "location" );
+    toAddressLabel.setData( "org.eclipse.rwt.themeVariant", "location" );
     toAddressLabel.setLayoutData( new GridData( SWT.BEGINNING, SWT.CENTER, false, false ) );
     toAddressLabel.setText( "Address" );
     
     toAddress = new Text( contentArea, SWT.SINGLE | SWT.LEAD | SWT.BORDER );
-    toAddress.setData( WidgetUtil.CUSTOM_VARIANT, "big" );
+    toAddress.setData( "org.eclipse.rwt.themeVariant", "big" );
     GridData toAddressLayoutData = new GridData( SWT.FILL, SWT.CENTER, true, false );
     toAddressLayoutData.horizontalSpan = 3;
     toAddress.setLayoutData( toAddressLayoutData );
     
     Label toGeoLabel = new Label( contentArea, SWT.NONE );
-    toGeoLabel.setData( WidgetUtil.CUSTOM_VARIANT, "location" );
+    toGeoLabel.setData( "org.eclipse.rwt.themeVariant", "location" );
     toGeoLabel.setLayoutData( new GridData( SWT.BEGINNING, SWT.CENTER, false, false ) );
     toGeoLabel.setText( "Lat/Lon" );
     
     toGeo = new Text( contentArea, SWT.SINGLE | SWT.LEAD | SWT.BORDER );
-    toGeo.setData( WidgetUtil.CUSTOM_VARIANT, "big" );
+    toGeo.setData( "org.eclipse.rwt.themeVariant", "big" );
     toGeo.setLayoutData( toAddressLayoutData );
     
     Button addShipmentButton = new Button( contentArea, SWT.PUSH );
-    addShipmentButton.setData( WidgetUtil.CUSTOM_VARIANT, "menu" );
+    addShipmentButton.setData( "org.eclipse.rwt.themeVariant", "menu" );
     GridData addButtonLayoutData = new GridData( SWT.RIGHT, SWT.CENTER, true, false );
     addButtonLayoutData.horizontalSpan = 3;
     addShipmentButton.setLayoutData( addButtonLayoutData );
@@ -121,7 +120,7 @@ public class ShipmentDialog extends Dialog {
     } );
     
     Button cancelButton = new Button( contentArea, SWT.PUSH );
-    cancelButton.setData( WidgetUtil.CUSTOM_VARIANT, "menu" );
+    cancelButton.setData( "org.eclipse.rwt.themeVariant", "menu" );
     cancelButton.setLayoutData( new GridData( SWT.FILL, SWT.CENTER, true, false ) );
     cancelButton.setText( "Cancel" );
     cancelButton.addSelectionListener( new SelectionAdapter() {
