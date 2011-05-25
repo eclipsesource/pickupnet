@@ -32,7 +32,7 @@ public class AssignServlet extends HttpServlet {
   {
     String driverId = req.getParameter( "id" );
     if( driverId == null ) {
-      resp.getWriter().write( "No driver spcified" );
+      resp.getWriter().write( "No driver specified" );
     } else {
       String content = createContent( driverId );
       resp.getWriter().write( content );
