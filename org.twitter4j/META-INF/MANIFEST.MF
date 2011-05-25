@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Twitter4j
+Bundle-SymbolicName: org.twitter4j
+Bundle-Version: 2.2.0.qualifier
+Bundle-Vendor: EclipseSource
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-ClassPath: lib/twitter4j-core-2.2.0.jar,
+ .
+Export-Package: twitter4j;version="2.2.0",
+ twitter4j.api;version="2.2.0",
+ twitter4j.auth;version="2.2.0",
+ twitter4j.conf;version="2.2.0",
+ twitter4j.json;version="2.2.0",
+ twitter4j.util;version="2.2.0"
