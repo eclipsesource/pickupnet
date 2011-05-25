@@ -52,14 +52,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.equinox.servletbridge.extensionbundle"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.core.commands"
          download-size="0"
          install-size="0"
@@ -88,14 +80,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.equinox.transforms.hook"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.rap.rwt"
          download-size="0"
          install-size="0"
@@ -103,29 +87,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.equinox.preferences"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.emf.common"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.equinox.weaving.hook"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.equinox.app"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -153,13 +115,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.equinox.ds"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.mortbay.jetty.server"
          download-size="0"
          install-size="0"
@@ -167,21 +122,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.osgi.services"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.equinox.http.registry"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.equinox.common"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -244,13 +185,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.equinox.util"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.core.expressions"
          download-size="0"
          install-size="0"
@@ -294,13 +228,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.osgi"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.rap.jface"
          download-size="0"
          install-size="0"
@@ -337,13 +264,6 @@
 
    <plugin
          id="pickupnet.model"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.equinox.registry"
          download-size="0"
          install-size="0"
          version="0.0.0"
