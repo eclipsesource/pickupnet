@@ -32,7 +32,7 @@ import pickupnet.util.PickupnetAdapterFactory;
 
 public class ModelPersistenceService implements ModelLoader {
   
-  private static final String FILE_PATH = "/tmp/station.xml";
+  private static final String DB_FILE_PROPERTY = "db.file";
   private static final String MODEL_URI = "http://pickupnet.de/datamodel";
 
   @Override
@@ -42,7 +42,7 @@ public class ModelPersistenceService implements ModelLoader {
       AdapterFactoryEditingDomain editingDomain 
         = new AdapterFactoryEditingDomain( new PickupnetAdapterFactory(), new BasicCommandStack() );
       ResourceSet resourceSet = createResourceSet( editingDomain );
-      File file = new File( FILE_PATH );
+      File file = new File( System.getProperty( DB_FILE_PROPERTY ) );
       EPackage.Registry.INSTANCE.put( MODEL_URI, PickupnetPackage.eINSTANCE );
       boolean needToSave = !file.exists();
       final Resource resource = createResource( resourceSet, needToSave );
@@ -65,7 +65,7 @@ public class ModelPersistenceService implements ModelLoader {
   private static Resource createResource( ResourceSet resourceSet, boolean needToSave )
     throws IOException
   {
-    final Resource resource = resourceSet.createResource( URI.createFileURI( FILE_PATH ), "xml" );
+    final Resource resource = resourceSet.createResource( URI.createFileURI( System.getProperty( DB_FILE_PROPERTY ) ), "xml" );
     if( needToSave ) {
       resource.getContents().add( PickupnetFactory.eINSTANCE.createStation() );
       resource.save( null );
