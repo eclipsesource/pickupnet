@@ -103,8 +103,8 @@ public class AssignServlet extends HttpServlet {
     EList<Shipment> shipments = Pickupnet.STATION_1.getShipments();
     for( Shipment shipment : shipments ) {
       if( shipment.getId().equals( name ) ) {
-        shipment.setStatus( ShipmentStatus.ASSIGNED );
         shipment.setDriver( getDriver( driverId ) );
+        shipment.setStatus( ShipmentStatus.ASSIGNED );
       }
     }
   }

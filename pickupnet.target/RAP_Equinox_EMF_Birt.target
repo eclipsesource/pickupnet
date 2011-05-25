@@ -13,5 +13,6 @@
 <unit id="org.eclipse.equinox.sdk.feature.group" version="3.7.0.v20110502-7M7W8Z8eNV4Ulz-bhichboyz0Z5T"/>
 <repository location="http://download.eclipse.org/releases/indigo/"/>
 </location>
+<location path="${project_loc}/bundles" type="Directory"/>
 </locations>
 </target>

@@ -15,13 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.emf.common.util.EList;
 
+import pickupnet.Driver;
 import pickupnet.Pickupnet;
 import pickupnet.Shipment;
 import pickupnet.ui.admin.ServletUtil;
 
 
 public class ListShipmentsServlet extends HttpServlet {
-  
+
   private static final long serialVersionUID = 8721722164932667252L;
 
   @Override
@@ -37,6 +38,10 @@ public class ListShipmentsServlet extends HttpServlet {
       buffer.append( "From: " + shipment.getPickUpAddress().getText() + ", " );
       buffer.append( "To: " + shipment.getShipToAddress().getText() + ", " );
       buffer.append( "Customer: " + shipment.getOrderer().getId() + ", " );
+      Driver driver = shipment.getDriver();
+      if( driver != null ) {
+        buffer.append( "<br/>Driver: " + driver.getId() + ", " );
+      }
       buffer.append( "Status: " + shipment.getStatus() );
       buffer.append( "</li>" );
     }
