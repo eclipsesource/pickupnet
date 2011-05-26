@@ -20,7 +20,16 @@ public class Pickupnet {
     tracker.open();
     ModelLoader loader = tracker.getService();
     tracker.close();
-    return loader.loadStation();
+    Station station = loader.loadStation();
+    printLoadedCount( station );
+    return station;
+  }
+
+  private static void printLoadedCount( Station station ) {
+    System.out.println( "Loaded:" );
+    System.out.println( station.getCustomers().size() + " Customers" );
+    System.out.println( station.getDrivers().size() + " Drivers" );
+    System.out.println( station.getShipments().size() + " Shipments" );
   }
 
 }
