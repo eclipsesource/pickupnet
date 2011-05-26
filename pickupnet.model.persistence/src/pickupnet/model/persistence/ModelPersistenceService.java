@@ -42,7 +42,8 @@ public class ModelPersistenceService implements ModelLoader {
       AdapterFactoryEditingDomain editingDomain 
         = new AdapterFactoryEditingDomain( new PickupnetAdapterFactory(), new BasicCommandStack() );
       ResourceSet resourceSet = createResourceSet( editingDomain );
-      File file = new File( System.getProperty( DB_FILE_PROPERTY ) );
+      String property = System.getProperty( DB_FILE_PROPERTY );
+      File file = new File( property );
       EPackage.Registry.INSTANCE.put( MODEL_URI, PickupnetPackage.eINSTANCE );
       boolean needToSave = !file.exists();
       final Resource resource = createResource( resourceSet, needToSave );
